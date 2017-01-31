@@ -220,6 +220,15 @@ steps:
 
 #Module configuration
 
+##Technical configuration
+
+Please increase the "max_inputs_vars" in the "*php.ini*" of your server.
+An acceptable value is 5000.
+
+        max_inputs_vars=5000
+        
+This value is by default set at 1000 and is too low to support the saving of configuration of Hipay Module.    
+
 ##General configuration
 
 To configure your HiPay Enterprise TPP API credentials, you must click
@@ -241,6 +250,25 @@ When using Multi-site or Multi-store : you can use different HiPay
 credentials and payment methods for each Store View using the “*Current
 Configuration Scope*” selectbox. Uncheck the “Use Website” checkbox and
 specify the desired valued.
+
+### Additional parameters
+
+|  Name    | Description|
+|----------|:-------------:|
+|  Device fingerprint    | Define if a fingerprint is sent with the transaction (By default value is YES )
+|  Use order currency for transaction    | Define the currency for the order. By default the orders are always process with the base currency
+
+### Basket configuration
+
+This section is about sending to Hipay the basket during the transaction to the HiPay Enterprise TPP back office.
+This feature is still in beta version, thank you for approaching the support Hipay for its installation and configuration.
+
+|  Name    | Description|
+|----------|:-------------:|
+|  Activate basket   | Activate basket sending or not ( By default "NO" )
+|  Attribute ean   |  EAN is not an magento attribute by default, so define your custom attribute if you want to send him in basket
+|  Load attribute  |  Because ean is not a default attribute, a product loading is necessary to get the value. You can avoid loading by adding the attribute to the order and quote.  
+
 
 ##Payment Methods configuration
 
@@ -348,7 +376,8 @@ Sisal, etc.*
 |Use Oneclick|                                      Allows the use of Oneclick payment (only for credit cards).
 |Rules Oneclick|                                    If Oneclick used, configure Rules to activate Oneclick
 |Add product to cart|                               Update the cart when the payment is cancelled or refused.
-|Cancel pending order|                              Cancel pending orders over 30 minutes.
+|Cancel pending order|                              Cancel pending orders over 30 minutes ( by default ) .
+|Delay before cancel order|                         Adjustment of canceling period
 |Send fraud payment email|                          Sends an alert to the client if a transaction with the challenge status and requires approval.
 |Payment from applicable countries|                 Restricted access by country.
 |Payment from Specific countries|                   List of allowed countries.
@@ -437,23 +466,30 @@ instructions:
 
 ### Configuration:
 
-1.  Create a new Magento Store View called “MO/TO”
-	- “*System -&gt; Manage Stores -&gt; Create Store View*”
-2.  MO/TO account configuration
-    - Under “*System -&gt; Configuration*” choose your “MO/TO” Store
-        View and follow Chapter 4 with your MO/TO account credentials.
+- Under “*System -&gt; Configuration -&gt; Hipay Entreprise*”, fill specifics credentials for MO/TO under section 
+    "Hipay Enterprise credentials MO/TO". Theses credentials will be used in MO/TO payment if they are filled in otherwise,  
+    it will be the normal credentials.
+ 
+- You can also configure the following settings
 
-### Payment:
+|  Name    | Description|
+|----------|:-------------:|
+|  Send an email to customer for paying    |  If "YES", then an email with a payment link is sent to customer for hosted payment, If "NO" the payment in backend have to be done by the admin.    
+|  Payment Email Sender   | Choose the sender of email with the link payment      
+|  Payment Template   | Choose the email template        
+
+### Payment MO/TO for hosted methods:
 
 - Create a new order on your Magento back office
     1.  “*Sales -&gt; Create New Order*”.
-    1.  Choose your customer.
-    1.  Select your MO/TO Store View.
     1.  Add your products, Account information, Billing address,
         Shipping address, Payment method, Shipping method, etc.
-    1.  Submit your order.
-    1.  Complete the payment.
-
+    1.  Submit your order.  
+    1.  An email is sent to customer with a link for paying the order
+    1.  The Customer click on link in email and is redirected to form hosted payment
+    1.  The Customer pay and is redirected on your magento frontend ( Success ou error page ) 
+    1.  The status of the order is changed to "processing"
+    
 ##Split payment method
 
 ### Payment profile
@@ -471,8 +507,8 @@ A payment profile defines the billing cycle of an order, for example :
 |----------|:-------------:|
 |Name|                     Title displayed on the front-end for this payment method.
 |Billing Period Unit|      Unit of time for billing during the subscription period.
-|Billing Frequency|        Number of billing periods that make up one billing cycle.
-|Maximum Billing Cycles|   The number of billing cycles for payment period.
+|Billing Delay|             Number of billing periods that make up one billing cycle.
+|Maximum Billing Cycles |   The number of billing cycles for payment period.
 
 Also please note that when configuring your payment method, you must
 select “*Sale”* as your “*Payment Action”*
@@ -533,3 +569,17 @@ force the payment immediately :
 ##HiPay Enterprise Hosted Page with IFrame 
 
 ![](images/media/image21.jpg)
+
+## Custom data
+
+The magento hipay module allows you to send your custom data with the transaction. You will be able to find later these data in the BO TPP.
+
+If you want develop your own custom data, please take the *CustomData.php* file in folder "extra" and place it in hipay module sources in folder "/AlloPass/Hipay/Helper".
+You have to implement the method "getCustomData" and return an array with yours datas.
+
+## Problems frequents 
+
+If you have problems with authorization and capture notifications, please check if an observer is listening 
+the events **sales_order_save_after** or **sales_order_invoice_save_after**, and that there is no exception in them.
+
+If an exception is raised during the chain of observers, then the HIPAY notification will be in error and the status of the order will not changed
