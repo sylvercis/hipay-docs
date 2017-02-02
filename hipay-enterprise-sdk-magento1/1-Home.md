@@ -263,6 +263,8 @@ specify the desired valued.
 This section is about sending to Hipay the basket during the transaction to the HiPay Enterprise TPP back office.
 This feature is still in beta version, thank you for approaching the support Hipay for its installation and configuration.
 
+![](images/media/image-basket.png)
+
 |  Name    | Description|
 |----------|:-------------:|
 |  Activate basket   | Activate basket sending or not ( By default "NO" )
@@ -465,6 +467,8 @@ financial details received over the phone he can follow this
 instructions:
 
 ### Configuration:
+
+![](images/media/image-moto.png)
 
 - Under “*System -&gt; Configuration -&gt; Hipay Entreprise*”, fill specifics credentials for MO/TO under section 
     "Hipay Enterprise credentials MO/TO". Theses credentials will be used in MO/TO payment if they are filled in otherwise,  
