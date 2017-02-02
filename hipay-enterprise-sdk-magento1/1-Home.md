@@ -281,7 +281,7 @@ Configuration*).
 Once you are in payment methods list you will find all the HiPay
 Enterprise installation possibilities.
 
-![](images/media/image11.png)
+![](images/media/image22.png)
 
 ### HiPay Enterprise Credit Card API
 (only available for credit-card and debit-card payment methods)
