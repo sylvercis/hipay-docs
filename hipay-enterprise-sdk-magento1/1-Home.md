@@ -256,7 +256,14 @@ specify the desired valued.
 |  Name    | Description|
 |----------|:-------------:|
 |  Device fingerprint    | Define if a fingerprint is sent with the transaction (By default value is YES )
-|  Use order currency for transaction    | Define the currency for the order. By default the orders are always process with the base currency
+|  Use order currency for transaction *    | Define the currency used for the order. By default the orders are always process with the base currency of store.
+
+If you activate "*Use order currency for transaction*", your payment method have to be configured in "Sale" mode.
+If you want use this feature in "*Authorize*" mode and do "Manual capture" in your backoffice when you are invocing order,
+you must develop your own "invocing" and making a override of *Mage_Sales_Model_Order_Invoice* and method "*register*". 
+
+If you let the per default magento process, the authorization transaction will be process with the currency choosing by customer, and 
+capture when you are invoicing with *base currency* of store.
 
 ### Basket configuration
 
@@ -269,8 +276,42 @@ This feature is still in beta version, thank you for approaching the support Hip
 |----------|:-------------:|
 |  Activate basket   | Activate basket sending or not ( By default "NO" )
 |  Attribute ean   |  EAN is not an magento attribute by default, so define your custom attribute if you want to send him in basket
-|  Load attribute  |  Because ean is not a default attribute, a product loading is necessary to get the value. You can avoid loading by adding the attribute to the order and quote.  
+|  Load attribute *  |  Because ean is not a default attribute, a product loading is necessary to get the value. You can avoid loading by adding the attribute to the order and quote.  
 
+Please assume  **"Adjustement Fee"** or **"Adjustement Refund"** are not supported with basket for refunds.  
+
+The product loading is carried into Hipay's helper which is **Data.php** when informations about product are retrieved. If you want avoid  
+this loading wich is not fast, please add your ean attribute in **Quote** and **Order** model.  
+
+There are several ways to do that but for example you may: 
+
+  1. Add your attribute in "order" and "quote" tables 
+  1. Save your attribute in observer who listen *sales_quote_save_before* 
+  1. Upgrade your config.xml to transfer the attribute in the "Order" with :
+     
+            <fieldsets>
+                <sales_convert_quote>
+                    <attribute_ean>
+                        <to_order>*</to_order>
+                    </attribute_ean>
+                </sales_convert_quote>
+            </fieldsets>
+
+You may test and see the code wich is used in the Data.php
+
+            // if store support EAN ( Please set the attribute on hipay config )
+            if (Mage::getStoreConfig('hipay/hipay_basket/attribute_ean', Mage::app()->getStore())) {
+                $attribute = Mage::getStoreConfig('hipay/hipay_basket/attribute_ean', Mage::app()->getStore());
+
+                if (Mage::getStoreConfig('hipay/hipay_basket/load_product_ean', Mage::app()->getStore())) {
+                    $resource = Mage::getSingleton('catalog/product')->getResource();
+                    $ean = $resource->getAttributeRawValue($product->getProductId(), $attribute,
+                        Mage::app()->getStore());
+                } else {
+                    // The custom attribute have to be present in quote and order
+                    $ean = $product->getData($attribute);
+                }
+            }
 
 ##Payment Methods configuration
 
