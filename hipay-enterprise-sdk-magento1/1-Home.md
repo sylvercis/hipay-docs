@@ -1,187 +1,144 @@
-#HiPay Enterprise Magento 1 - Integration guide
+#HiPay Enterprise – Magento 1 – Integration guide
 
 
-**DISCLAIMER:**
+**DISCLAIMER**
 While every effort has been made to ensure the accuracy of the information contained in this publication, the information is supplied without representation or warranty of any kind, is subject to change without notice and does not represent a commitment on the part of HiPay.
-HiPay, therefore, assumes no responsibility and shall have no liability,
-consequential or otherwise, of any kind arising from this material or
-any part thereof, or any supplementary materials subsequently issued by
-HiPay. HiPay has made every effort to ensure the accuracy of this
-material.
+HiPay, therefore, assumes no responsibility and shall have no liability, consequential or otherwise, of any kind arising from this material or any part thereof, or any supplementary materials subsequently issued by HiPay.
 
-**TECHNICAL SUPPORT** If you need any complementary information concerning the technical implementation of HiPay Enterprise TPP don’t hesitate to go to our support center ([*http://help.hipay.com*](http://help.hipay.com)) or contact our Technical Support team:
+**TECHNICAL SUPPORT** If you need any complementary information concerning the technical implementation of HiPay Enterprise, please don’t hesitate to visit our Support Center ([*http://support.hipay.com*](http://support.hipay.com)) or contact our Business IT Services.
 
 - Email: support.tpp@hipay.com
-- Telephone: +33 (0)1 53 44 15 07
+- Telephone: +33 (0)1 82 88 68 68
 
 
-#About this Guide
+#About this guide
 
 ##Purpose
 
-This document is designed to provide you details on how to integrate
-your business to the HiPay Enterprise TPP payment gateway. This
-document provides step-by-step instructions on how to simply and quickly
-get up and running with our services as well as detailed reference
-material.
+This document is designed to provide you with details on how to integrate your business to the HiPay Enterprise Payment Gateway. 
+This document gives you step-by-step instructions on how to simply and quickly get up and running with our services as well as detailed reference material.
 
-Where applicable, this document refers to the related documentation with
-further details.
+Where applicable, this document refers to the related documentation with further details.
 
-##Intended Audience
+##Intended audience
 
-The intended audience is the merchant's technical staff or the
-merchant's system integrator.
+This document is designed for the merchants' technical staff or system integrator.
 
 ##Copyright
 
-The information contained in this guide is a property of HiPay. This
-material shall not be duplicated, published, or disclosed, in whole or
-in part, without the prior written permission of HiPay.
+The information contained in this guide is a property of HiPay. This material shall not be duplicated, published, or disclosed, in whole or in part, without the prior written permission of HiPay.
 
-##Legal Notice
+##Legal notice
 
-This document contains the proprietary and confidential information of
-HiPay. Such information may not be used for any unauthorized purpose and
-may not be published or disclosed to third parties, in whole or part,
-without the express written permission of HiPay. You acknowledge and
-agree that this document and all portions thereof, including, but not
-limited to, any copyright, trade secret and other intellectual property
-rights relating thereto, are and at all times shall remain the sole
-property of HiPay and that title and full ownership rights in the
-information contained herein and all portions thereof are reserved to
-and at all times shall remain with HiPay. You agree to safeguard the
-confidentiality of the information contained herein using the same
-standard you employ to safeguard your own confidential information of
-like kind, but in no event less than a commercially reasonable standard
-of care. If you do not agree with the foregoing conditions, you are
-required to return this document immediately to HiPay.
+This document contains the proprietary and confidential information of HiPay. Such information may not be used for any unauthorized purpose and may not be published or disclosed to third parties, in whole or part, without the express written permission of HiPay. 
+You acknowledge and agree that this document and all portions thereof, including, but not limited to, any copyright, trade secret and other intellectual property rights relating thereto, are and at all times shall remain the sole property of HiPay and that title and full ownership rights in the information contained herein and all portions thereof are reserved to and at all times shall remain with HiPay. You agree to safeguard the confidentiality of the information contained herein using the same standard you employ to safeguard your own confidential information of like kind, but in no event less than a commercially reasonable standard of care. 
+If you do not agree with the foregoing conditions, you are required to return this document immediately to HiPay.
 
-#How to Read this Guide
+#How to read this guide
 
-##Document Conventions
+##Document conventions
 
-To ease readability and improve understanding, this document uses a
-number of conventions.
+To ease readability and improve understanding, this document uses a number of conventions.
 
-This guide uses several typographic conventions to highlight certain
-words and phrases and draw attention to specific pieces of information.
+This guide uses several typographic conventions to highlight certain words and phrases and draw attention to specific pieces of information.
 The following table clarifies the conventions used across this guide.
 
 *Table 1: Typographic conventions that apply across this guide*
 
-| Convention   |      Purpose in this guide      |
+| Convention   |      Meaning      |
 |----------|:-------------:|
-| Mono-space |  Indicates source code, code examples, input to the command line, application output, code lines embedded in text, and variables and code elements. |
-| *Italic* |  Italicized regular text is used for emphasis or to indicate a term that is being defined or will be defined shortly. |
-| ... |  Horizontal ellipsis points in sample code indicate the omission of part of the code. This is done when you would normally expect additional code to appear, but such code would not be related to the example. |
+| Mono-space |  Indicates source code, code examples, input to the command line, application output, code lines embedded in text, variables and code elements. |
+| *Italics* |  Italicized regular text is used for emphasis or to indicate a term that is being defined or will be defined shortly. |
+| ... |  Horizontal ellipsis points in sample code indicate the omission of part of the code (i.e. when you would normally expect additional code to appear, but such code would not be related to the example). |
 | $ |  At the beginning of a command, indicates an operating system shell prompt. |
 | &lt;placeholder&gt; |  Indicates placeholders, most often method or function parameters; these placeholders represent information that must be supplied by the implementation or the user. For command-line input, indicates parameter values.|
 
 **Abbreviations used in tables**
 
-The tables of this document describe data elements. These data elements
-are equivalent to parameters in a query or to fields of a response
-message. The following table helps understanding the different
-attributes (columns) that define a data element.
+The tables of this document describe data elements, which are equivalent to parameters in a query or to fields of a response
+message. The following table helps understanding the different attributes (columns) that define a data element.
 
 *Table 2: Description of data elements*
 
-| Column   |      Explanation    |
+| Column   |      Meaning    |
 |----------|:-------------:|
-| Field Name |  Contains the name of the data element. |
-| Format |  The format of the element. |
-| Length |  Denotes maximum size of the element.<br/>For example a size of 6 means that the data value cannot exceed six characters.<br/>When no size is specified, it means there is no limitation on the length of the field. |
-| Req. |  Specifies whether an element is required or not. <br/>**M** = Mandatory; must always be provided.<br/>**C** = Conditional; requirement depends on value or appearance of other elements. |
-| Description |  Provides a brief description of the data element and where applicable, a list of valid values and element dependencies. |
+| Field name |  Name of the data element |
+| Format |  Format of the element |
+| Length |  Maximum size of the element.<br/>For example, a size of 6 means that the data value cannot exceed six characters.<br/>When no size is specified, it means that there is no limitation on the length of the field. |
+| Req. |  Specifies whether an element is required or not. <br/>**M** = Mandatory; must always be provided.<br/>**C** = Conditional; requirement depends on the value or presence of other elements. |
+| Description |  Brief description of the data element and, where applicable, a list of valid values and element dependencies. |
 
 *Table 3: Available formats of data elements*
 
-| Format Abbreviatio   |      Description    |     Example    |
+| Format abbreviation   |      Description    |     Example    |
 |----------|:-------------:|:-------------:|
 | AN |  Alphanumeric characters (a-z, A-Z, 0-9)  ||
 | A |  Alphabetic characters only (a-z, A-Z)  ||
-| N |  Numerical only ||
+| N |  Numeric characters only ||
 | R |  Decimal number with explicit decimal point, signed |12.34|
 | DT |  Date in the format YYYY-MM-DD |2016-12-31|
 | TM |  Time in the format HH:MM with optional seconds (HH:MM:SS) |15:30|
 
-**Acronyms and Abbreviations**
+**Acronyms and abbreviations**
 
-Acronyms and abbreviations are used in this guide.
+The following acronyms and abbreviations are used in this guide.
 
-The following table shows the acronym or abbreviation and the
-corresponding full name.
+*Table 4: Acronyms and abbreviations*
 
-*Table 4: Acronyms and Abbreviations*
-
-|Acronym or Abbreviation |   Full Name |
+|Acronym or abbreviation |   Full name/meaning |
 |----------|:-------------:|
 |  BIN |                       Bank Identification Number
 |  PAN  |                     Primary Account Number
-|  PCI DSS  |                 Payment Card Industry Data Security Standards
+|  PCI DSS  |                 Payment Card Industry Data Security Standard
 |  REST   |                   Representational State Transfer
 |  TPP   |                   Third Party Processing
 
 
 #Introduction
 
-In this document we describe the method to parameter and use the HiPay Enterprise TPP module for Magento webshop.
+This document describes how to install and use the HiPay Enterprise module for Magento webshop.
 
-##To know
+##Please note
 
--   You will need to configure your HiPay Enterprise TPP account before
-    installing your Magento module under HiPay Enterprise TPP back
-    office
+-   You will need to configure your HiPay Enterprise account                                                                             
+    before installing your Magento module in your HiPay Enterprise back office
     ([*https://merchant.hipay-tpp.com/*](https://merchant.hipay-tpp.com/)).
--   HiPay Enterprise TPP module is not offered natively on Magento, you
-    must contact HiPay to get the module.
--   This module needs valid HiPay Enterprise TPP credentials to use it,
+-   The HiPay Enterprise module is not offered natively on Magento,                                                                      
+    you must contact HiPay to get it.
+-   This module requires valid HiPay Enterprise credentials to be able to use it;
     please contact HiPay to get them.
 
 
-#Platform Configuration
+#Platform configuration
 
 ##Allow your servers IP addresses
 
-When a request is sent to the HiPay Enterprise TPP servers, the IP
-address or IP address range from where the connection was made is
-verified. If it matches with the IP address supplied by the Merchant at
-a previous stage, the request will be processed. In the case of missing
-or incorrect information, the server will respond with an appropriate
-error message, indicating the error in the request.
+When a request is sent to the HiPay Enterprise servers, the IP address or IP address range from where the connection was made is
+verified. If it matches with the IP address supplied by the merchant at a previous stage, the request will be processed. In case of missing or incorrect information, the server will respond with an appropriate error message, indicating the error in the request.
 
-To do this, you must log in your HiPay Enterprise TPP back office
-(https://merchant.hipay-tpp.com), click on the "*Integration*" menu,
-then "*Security Setting*" and enter your IP(s) in "*IP restriction*"
-section.
+To do this, you must log in to your HiPay Enterprise back office (https://merchant.hipay-tpp.com), click on the "*Integration*" tab,
+then on "*Security Settings*" and enter your IP address(es) in the "*IP Restriction*" section.
 
 ![Important](images/media/image5.png)
 <br/>**Important!**
 
-When changing your IP address, do not forget to ensure that all new IP addresses are configured for your account. If not, your server requests will be rejected.
+When changing your IP address(es), make sure that all new IP addresses are configured for your account. If not, your server requests will be rejected.
   
 ![ip](images/media/image6.png)
 
 ##Choose a passphrase
 
-It is strongly recommended that you use a signature mechanism to verify
-the contents of a request or redirection made to your servers. This will
-prevent customers from tampering with the data in the data exchanges
-between your servers and our payment system.
+It is strongly recommended that you use a signature mechanism to verify the contents of a request or redirection made to your servers. This will prevent customers from tampering with the data in the data exchanges between your servers and our payment system.
 
-A unique signature is sent each time that HiPay contact a merchant URL,
-notification or redirection.
+A unique signature is generated each time HiPay uses a merchant URL, notification or redirection.
 
-First of all you will need to set a Secret Passphrase in your HiPay
-Enterprise TPP back office under “*Integration -&gt; Security Settings -&gt; Secret Passphrase*”.
+First of all, you need to set a secret passphrase in your HiPay Enterprise back office under “*Integration -&gt; Security Settings -&gt; Secret Passphrase*”.
 
 ![passphrase](images/media/image7.jpg)
 
 ##Configure redirection URLs
 
-To use the HiPay Enterprise TPP module, you need to configure the
-redirection URLs in your HiPay Enterprise TPP back office under
+To use the HiPay Enterprise module, you need to configure the redirection URLs in your HiPay Enterprise back office under
 “*Integration -&gt; Redirect Pages*”.
 
 -   Accept Page: `http://www.{your-domain.com}/index.php/hipay/cc/accept/`
@@ -190,29 +147,27 @@ redirection URLs in your HiPay Enterprise TPP back office under
 -   Cancel Page: `http://www.{your-domain.com}/index.php/hipay/cc/cancel/`
 -   Exception Page: `Empty`
 
-Also check the box "*Feedback Parameters*" and apply the changes.
+Also check the "Custom" box in "*Feedback Parameters*" and apply changes.
 
-Then click on "*Integration*" menu, then "*Notifications*"
+Click on the "*Integration*" tab, then on "*Notifications*".
 
 -   Notification URL: http://www.{your-domain.com}/index.php/hipay/notify/index
 -   Request method: HTTP POST
 -   I want to be notified for the following transaction statuses: ALL
 
-Don’t forget to change {your-domain.com} by your own domain and inform
-the store code if you have enabled it on your Magento configuration.
+Don’t forget to change {your-domain.com} by your own domain and specify the store code if you have enabled it on your Magento configuration.
 
 
-#Module Installation
+#Module installation
 
-##Magento connect
+##Magento Connect
 
-You can get HiPay Enterprise official Magento extension under
-[*http://www.magentocommerce.com/magento-connect/hipay-fullservice-1.html*](http://www.magentocommerce.com/magento-connect/hipay-fullservice-1.html),
-to install it, just get the “extension key”, then go to your Magento
-administrator back office, click on “*System* -&gt; *Magento connect
--&gt; Magento connect manager*”
+You can get the official HiPay Enterprise payment extension for Magento here:
+[*http://www.magentocommerce.com/magento-connect/hipay-fullservice-1.html*](http://www.magentocommerce.com/magento-connect/hipay-fullservice-1.html).
+To install it, just get the “extension key”. Then go to your Magento administrator back office, click on “*System* -&gt; *Magento connect
+-&gt; Magento connect manager*”.
 
-Paste the “extension key” under “Install New Extensions” and follow the
+Paste the “extension key” under “Install New Extensions” and follow these
 steps:
 
 ![magento connect](images/media/image8.png)
@@ -227,43 +182,35 @@ An acceptable value is 5000.
 
         max_inputs_vars=5000
         
-This value is by default set at 1000 and is too low to support the saving of configuration of Hipay Module.    
+By default, this value is set to 1000 and is too low to support the saving of the HiPay module configuration.    
 
 ##General configuration
 
-To configure your HiPay Enterprise TPP API credentials, you must click
-on "*HiPay Enterprise*" in Magento configuration section (*System -&gt;
-Configuration -&gt; Sales*). If you have administrative rights but you
-are not allowed to access to the configuration of the payment method,
-please log out and log in.
+To configure your HiPay Enterprise API credentials, you must click on "*HiPay Enterprise*" in the Magento configuration section (*System -&gt; Configuration -&gt; Sales*). If you have administrative rights but are not allowed to access the configuration of the payment method, please log out and log back in.
 
 ![](images/media/image9.jpg)
 
-You can find your HiPay Enterprise TPP API credentials on your HiPay
-Enterprise TPP back office, under “*Integration -&gt; Security Settings
--&gt;* *API credentials*”.
+You can find your HiPay Enterprise API credentials in your HiPay Enterprise back office, under “*Integration -&gt; Security Settings
+-&gt;* *Api credentials*”.
 
-Once you have them, fill them on the module configuration with your
-“*Passphrase*”. (*Please refer to *2.2* section*).
+Once you have them, put them in the module configuration with your
+“*Passphrase*”. (*Please refer to section *2.2**).
 
-When using Multi-site or Multi-store : you can use different HiPay
-credentials and payment methods for each Store View using the “*Current
-Configuration Scope*” selectbox. Uncheck the “Use Website” checkbox and
-specify the desired valued.
+When using the Multi-site or Multi-store feature: you can use different HiPay credentials and payment methods for each Store View using the “*Current Configuration Scope*” select box. Uncheck the “Use Website” checkbox and specify the desired valued.
 
 ### Additional parameters
 
 |  Name    | Description|
 |----------|:-------------:|
-|  Device fingerprint    | Define if a fingerprint is sent with the transaction (By default value is YES )
-|  Use order currency for transaction *    | Define the currency used for the order. By default the orders are always process with the base currency of store.
+|  Device fingerprint    | Define if a fingerprint is sent with the transaction ("YES" by default)
+|  Use order currency for transaction *    | Define the currency used for the order. By default, orders are always processed with the base currency of the store.
 
-If you activate "*Use order currency for transaction*", your payment method have to be configured in "Sale" mode.
-If you want use this feature in "*Authorize*" mode and do "Manual capture" in your backoffice when you are invocing order,
-you must develop your own "invocing" and making a override of *Mage_Sales_Model_Order_Invoice* and method "*register*". 
+If you activate "*Use order currency for transaction*", your payment method must be configured in "Sale" mode.
+If you want to use this feature in "*Authorize*" mode and do "manual captures" in your back office when invocing orders,
+you must develop your own "invoicing" and make an override of *Mage_Sales_Model_Order_Invoice* and method "*register*". 
 
-If you let the per default magento process, the authorization transaction will be process with the currency choosing by customer, and 
-capture when you are invoicing with *base currency* of store.
+If you keep the default Magento process, the transaction authorization will be processed in the currency chosen by the customer, and 
+the capture upon invoicing in the *base currency* of the store.
 
 ### Basket configuration
 
@@ -274,7 +221,7 @@ This feature is still in beta version, thank you for approaching the support Hip
 
 |  Name    | Description|
 |----------|:-------------:|
-|  Activate basket   | Activate basket sending or not ( By default "NO" )
+|  Activate basket   | Activate basket sending or not ("NO" by default)
 |  Attribute ean   |  EAN is not an magento attribute by default, so define your custom attribute if you want to send him in basket
 |  Load attribute *  |  Because ean is not a default attribute, a product loading is necessary to get the value. You can avoid loading by adding the attribute to the order and quote.  
 
