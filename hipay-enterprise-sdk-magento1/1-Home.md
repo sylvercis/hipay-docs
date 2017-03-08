@@ -214,27 +214,26 @@ the capture upon invoicing in the *base currency* of the store.
 
 ### Basket configuration
 
-This section is about sending to Hipay the basket during the transaction to the HiPay Enterprise TPP back office.
-This feature is still in beta version, thank you for approaching the support Hipay for its installation and configuration.
+This section addresses basket sending to the HiPay Enterprise back office during the transaction.
+Please note that this feature is still in beta version. For installation and configuration purposes, please contact our Business IT Services.
 
 ![](images/media/image-basket.png)
 
 |  Name    | Description|
 |----------|:-------------:|
 |  Activate basket   | Activate basket sending or not ("NO" by default)
-|  Attribute ean   |  EAN is not an magento attribute by default, so define your custom attribute if you want to send him in basket
-|  Load attribute *  |  Because ean is not a default attribute, a product loading is necessary to get the value. You can avoid loading by adding the attribute to the order and quote.  
+|  Attribute ean   |  EAN is not a Magento attribute by default: you must define your custom attribute if you want to send it in the basket
+|  Load attribute *  |  Because EAN is not a default attribute, product loading is necessary to get the value. You can avoid loading by adding the attribute to the order and quote.  
 
 Please assume  **"Adjustement Fee"** or **"Adjustement Refund"** are not supported with basket for refunds.  
 
-The product loading is carried into Hipay's helper which is **Data.php** when informations about product are retrieved. If you want avoid  
-this loading wich is not fast, please add your ean attribute in **Quote** and **Order** model.  
+Product loading is carried into HiPay's helper, which is **Data.php**, when information about the product is retrieved. If you want to avoid this loading, which is not fast, please add your EAN attribute in the **Quote** and **Order** model.  
 
-There are several ways to do that but for example you may: 
+There are several ways to do so. For example, you can: 
 
-  1. Add your attribute in "order" and "quote" tables 
-  1. Save your attribute in observer who listen *sales_quote_save_before* 
-  1. Upgrade your config.xml to transfer the attribute in the "Order" with :
+  1. Add your attribute in the "order" and "quote" tables. 
+  2. Save your attribute in observer who listen *sales_quote_save_before* .
+  3. Upgrade your config.xml to transfer the attribute in the "Order" with :
      
             <fieldsets>
                 <sales_convert_quote>
@@ -244,9 +243,9 @@ There are several ways to do that but for example you may:
                 </sales_convert_quote>
             </fieldsets>
 
-You may test and see the code wich is used in the Data.php
+You can test and see the code used in the Data.php.
 
-            // if store support EAN ( Please set the attribute on hipay config )
+            // If the store supports EAN (please set the attribute in hipay config)
             if (Mage::getStoreConfig('hipay/hipay_basket/attribute_ean', Mage::app()->getStore())) {
                 $attribute = Mage::getStoreConfig('hipay/hipay_basket/attribute_ean', Mage::app()->getStore());
 
@@ -255,188 +254,144 @@ You may test and see the code wich is used in the Data.php
                     $ean = $resource->getAttributeRawValue($product->getProductId(), $attribute,
                         Mage::app()->getStore());
                 } else {
-                    // The custom attribute have to be present in quote and order
+                    // The custom attribute has to be present in quote and order
                     $ean = $product->getData($attribute);
                 }
             }
 
-##Payment Methods configuration
+##Payment methods configuration
 
-To configure your HiPay Enterprise TPP payment methods, you must click
-on "*Payment Methods*" in Magento configuration section (*System -&gt;
+To configure your HiPay Enterprise payment methods, click on "*Payment Methods*" in the Magento configuration section (*System -&gt;
 Configuration*).
 
-Once you are in payment methods list you will find all the HiPay
-Enterprise installation possibilities.
+You will then see a list of payment methods with all the HiPay Enterprise integration possibilities.
 
 ![](images/media/image22.png)
 
 ### HiPay Enterprise Credit Card API
-(only available for credit-card and debit-card payment methods)
+(only available for credit card and debit card payment methods)
 
-In case of HiPay Enterprise Credit Card API integration (direct API
-integration), the customer will fill his bank information directly on
-merchants’ website, the module calls HiPay Enterprise TPP API to
-validate the transaction and the merchants’ website display the
-transaction confirmation / refused / pending message.
+With the HiPay Enterprise Credit Card API integration (direct API integration), customers fill in their bank information directly on
+the merchants’ website. The module calls the HiPay Enterprise API to validate the transaction and the merchant’s website displays the transaction confirmation / refused / pending message.
 
-If this integration mode is selected, you are required to be compliant
-with the PCI Data Security Standard, you can find more information under
-“*https://www.pcisecuritystandards.org*”.
+If this integration mode is selected, you are required to be compliant with the PCI Data Security Standard. For more information, please visit “*https://www.pcisecuritystandards.org*”.
 
 ### HiPay Enterprise Credit Card Split Payment
-(only available for credit-card and debit-card payment methods) 
+(only available for credit card and debit card payment methods) 
 
-This integration can be used to process recurring payments and split
-order’s payments amount through time using API. It is a variant of the
-HiPay Enterprise Credit Card API integration, therefore you are also
-required to be compliant with the PCI Data Security Standard.
+This integration can be used to process recurring payments and split order payments over time through API. It is a variant of the HiPay Enterprise Credit Card API integration. Therefore, you are also required to be compliant with the PCI Data Security Standard.
 
-Prior to activating this integration, at least one recurring profile
-must be created (*Please refer to section *5.6* Split payment method*).
+Prior to activating this integration, at least one recurring profile must be created (*Please refer to section *5.6* Split payment method*).
 
 ### HiPay Enterprise Credit Card Hosted Page
-(only available for credit-card and debit-card payment methods)
+(only available for credit card and debit card payment methods)
 
 
-To process the payment, cardholders are redirected to a secured payment
-page hosted by HiPay.
+To process payments, cardholders are redirected to a secured payment page hosted by HiPay.
 
-After payment validation customer will be redirected to merchants’
-website transaction confirmation / error / pending message.
+After payment validation, customers are redirected to the merchant's website which displays a transaction confirmation / error / pending message.
 
-### IFrame 
+### iFrame 
 
-You can activate the iFrame mode on your HiPay Enterprise Hosted Page
-if you want that cardholders fill their payment card information on a
-secured payment page hosted by HiPay displayed on an iFrame inside
-merchants’ payment page.
+You can activate the iFrame mode on your HiPay Enterprise Hosted Page if you want cardholders to fill in their payment card information on a secured payment page hosted by HiPay and displayed in an iFrame inside the merchants’ payment page.
 
-Your website must run with **HTTPS** protocol to use IFrame Hosted
-page.
+Your website must run with the **HTTPS** protocol to use an iFrame Hosted page.
 
-This page (hosted & iFrame) can be customized with merchants’ CSS
-stylesheet to fit his website look and feel.
+This page (hosted & iFrame) can be customized with the merchants’ CSS stylesheet to fit their website look and feel.
 
 ### HiPay Enterprise Hosted Page Split Payment
-(only available for credit-card and debit-card payment methods)
+(only available for credit card and debit card payment methods)
 
-This integration can be used to process recurring payments and split
-order’s payments amount through time using Hosted Page.
+This integration can be used to process recurring payments and split order payments over time using a hosted page.
 
-Prior to activating this integration, at least one recurring profile
-must be created (*Please refer to section* **5.6** *Split payment
+Prior to activating this integration, at least one recurring profile must be created (*Please refer to section* **5.6** *Split payment
 method*).
 
-### HiPay Enterprise other payment methods
+### Other HiPay Enterprise payment methods
 
-If you want to offer on your website other payment methods than
-credit-cards or debit-cards you can choose them directly on the payment
-methods list, they will be showed as “*HiPay Enterprise {payment
-method}*”, for exemple: *HiPay Enterprise Sofort, HiPay Enterprise
-Sisal, etc.*
+If you want to offer on your website other payment methods than credit card or debit card, you can choose them directly from the list of payment methods, indicated as follows: “*HiPay Enterprise {payment method}*” (e.g.: *HiPay Enterprise Sofort Überweisung, HiPay Enterprise Sisal, etc.*).
 
 ### Configuration parameters
 
   
 |  Name    | Description|
 |----------|:-------------:|
-|  Enabled    | Allows the activation of the module.
-|  Title| Title displayed on the front-end for this payment method.
-|Payment Profile | Pofiles allowed if split payment is used.<br/>*Please refer to section* **5.6** *Split payment method.*
-|Order status when payment accepted|                Status to be assigned to the command.
-|Order status when payment refused|                 Status to be assigned to the command.
-|Order status when payment cancelled by customer|   Status to be assigned to the command.
-|HiPay status to validate order| The HiPay status when you want that your Magento transaction be validated.
-|Redirect page pending status| If transaction result is pending the customer can be redirected to a pending, success or failure page.
-|Payment Action| Set the payment mode: *Authorization + Capture* (*Sale*) or *: Authorization Only*.<br/>*Please refer to “HiPayTPP-GatewayAPI documentation, chapter 3.1 Request a New Order – operation”.*<br/>Must be set on “*Sale*” for Split payment method.
-|Credit Card Types|                                 Card types allowed in the payment form.
-|Display card owner|                                Enable/disable the card holder input field in the payment form.
-|Credit Card Verification|                          Enable or disable Magento credit-card verification.
-|Css Url| URL to merchants’ stylesheet for iFrame or Hosted page operating modes.<br/>Important, **HTTPS** protocol is required. *See HiPayTPP-GatewayAPI documentation, chapter “3.3 Initialize a hosted payment page (css)”.*
-|Page payment template|For iFrame and Hosted page operating modes you can choose your basic template to show:<br/>**Basic:** Basic responsive design.<br/>**Basic-js:** Advanced responsive design.
-|Display hosted page in iframe|                     Activate iFrame mode on hosted page. *Please refer to chapter 4.2*
-|iFrame Height|                                     If iFrame operating mode is choosed, you can select your iFrame width to fit with your CSS.
-|iFrame Width|                                      If iFrame operating mode is choosed, you can select your iFrame height to fit with your CSS.
-|Wrapper iFrame Style|                              If iFrame operating mode is choosed, you can customize the wrapper around the iframe with your CSS.
-|iFrame Style|                                      If iFrame operating mode is choosed, you can select your iFrame integration style to fit with your CSS.
-|Display card selector|                             Enable/disable the payment methods selector on iFrame and Hosted page.
-|Enable 3D Secure|                                  Allows the activation of 3D secure if available on used card.
-|Rules 3D Secure|                                   If you enabled “*3D Secure with specific rules”*, setup rules to call 3D Secure system only when you really need it with order, customer or product attributes.
-|Use Oneclick|                                      Allows the use of Oneclick payment (only for credit cards).
-|Rules Oneclick|                                    If Oneclick used, configure Rules to activate Oneclick
-|Add product to cart|                               Update the cart when the payment is cancelled or refused.
-|Cancel pending order|                              Cancel pending orders over 30 minutes ( by default ) .
-|Delay before cancel order|                         Adjustment of canceling period
-|Send fraud payment email|                          Sends an alert to the client if a transaction with the challenge status and requires approval.
-|Payment from applicable countries|                 Restricted access by country.
-|Payment from Specific countries|                   List of allowed countries.
-|Minimum Order Total|                               Minimum amount to display the payment method.
-|Maximum Order Total|                               Maximum amount to display the payment method.
-|Sort Order|                                        Sort order of the payment method in front-end.
-|Enable debug log|                                  Log requests and server responses on the file« var/log/payment\_hipay\_cc.log »
-|Enable test mode|                                  Test Mode: If enabled, the module will use the HiPay TPP test platform.
+|  Enabled    | Allows the activation of the module
+|  Title| Title displayed on the front-end for the payment method
+|Payment Profile | Profiles allowed if split payment is used.<br/>*Please refer to section* **5.6** *Split payment method*.
+|Order status when payment accepted|                Status to be assigned to the order
+|Order status when payment refused|                 Status to be assigned to the order
+|Order status when payment cancelled by customer|   Status to be assigned to the order
+|HiPay status to validate order| HiPay status for a Magento transaction to be validated
+|Redirect page pending status| If the transaction result is pending, the customer can be redirected to a pending, success or failure page.
+|Payment Action| Set the payment mode: *Authorization + Capture* (*Sale*) or*: Authorization Only*.<br/>*Please refer to https://developer.hipay.com/doc-api/enterprise/gateway/#!/payments/requestNewOrder (Response Content Type – Parameters – operation)*.<br/>Must be set to “*Sale*” for Split payment method.
+|Credit Card Types|                                 Card types allowed in the payment form
+|Display card owner|                                Enable/disable the cardholder input field in the payment form
+|Credit Card Verification|                          Enable or disable Magento credit card verification
+|Css Url| URL to merchant style sheet for iFrame or Hosted page operating modes.<br/>Important, **HTTPS** protocol is required. *Please refer to https://developer.hipay.com/doc-api/enterprise/gateway/#!/payments/generateHostedPaymentPage (Response Content Type – Parameters – css)”.*
+|Page payment template|For iFrame and Hosted page operating modes, you can choose your basic template to show:<br/>**Basic:** Basic responsive design.<br/>**Basic-js:** Advanced responsive design.
+|Display hosted page in iFrame|                     Activate iFrame mode on hosted page. *Please refer to chapter 4.2.*
+|iFrame Height|                                     If iFrame operating mode is chosen, you can select your iFrame height to fit with your CSS.
+|iFrame Width|                                      If iFrame operating mode is chosen, you can select your iFrame width to fit with your CSS.
+|Wrapper iFrame Style|                              If iFrame operating mode is chosen, you can customize the wrapper around the iFrame with your CSS.
+|iFrame Style|                                      If iFrame operating mode is chosen, you can select your iFrame integration style to fit with your CSS.
+|Display card selector|                             Enable/disable the payment method selector on iFrame and Hosted pages.
+|Enable 3D Secure|                                  Allows the activation of 3-D Secure if available on the card being used.
+|Rules 3D Secure|                                   If you enabled “*3D Secure with specific rules”*, set up rules to trigger 3-D Secure only when you really need it with order, customer or product attributes.
+|Use Oneclick|                                      Allows the use of Oneclick payment (only for credit cards)
+|Rules Oneclick|                                    If Oneclick is used, configure the rules to activate Oneclick
+|Add product to cart|                               Reload the cart when payment is cancelled or refused
+|Cancel pending order|                              Cancel pending orders over 30 minutes (by default)
+|Delay before cancel order|                         Adjustment of cancelling period
+|Send fraud payment email|                          Alert the client if a transaction has been challenged and requires approval
+|Payment from applicable countries|                 Restricted access by country
+|Payment from specific countries|                   List of allowed countries
+|Minimum Order Total|                               Minimum amount to display the payment method
+|Maximum Order Total|                               Maximum amount to display the payment method
+|Sort Order|                                        Sort the payment method order in the front-end
+|Enable debug log|                                  Log requests and server responses on the "var/log/payment\_hipay\_cc.log" file
+|Enable test mode|                                  If Test mode is enabled, the module will use the HiPay Enterprise test platform.
   
 #Payment configuration
 
 ##“Sale” mode
 
-When making a purchase with the “sale” method, the capture is requested
-just after the authorization automatically. *Please refer to
-“HiPayTPP-GatewayAPI documentation, chapter 3.1 Request a New Order –
-operation”*
+When making a purchase with the “sale” mode, the capture is automatically requested right after the authorization. *Please refer to https://developer.hipay.com/doc-api/enterprise/gateway/#!/payments/requestNewOrder (Response Content Type – Parameters – operation)*.
 
-If the payment fails, the customer is redirected to the error page and
-the status is defined like configured in the module configuration.
+If the payment fails, the customer is redirected to the error page and the status is defined like configured in the module configuration.
 
-If successful, the customer is redirected to the success page, the
-invoice is created if the configuration allows it and the status is
-defined like this:
+If successful, the customer is redirected to the success page, the invoice is created if the configuration allows it and the status is
+defined as follows:
 
 -   “capture_waiting”
 -   “processing”
 
 ##“Authorization” mode 
 
-When making a purchase with the "Authorization" mode, the transaction
-will be on “waiting capture”. *Please refer to “HiPayTPP-GatewayAPI
-documentation, chapter 3.1 Request a New Order – operation”*
+When making a purchase with the "Authorization" mode, the transaction will be on “waiting capture”. *Please refer to https://developer.hipay.com/doc-api/enterprise/gateway/#!/payments/requestNewOrder (Response Content Type – Parameters – operation)*.
 
-The customer is not charged directly: You have 7 days to "capture" this
-order to charge the customer. Otherwise the order will be cancelled.
+The customer is not charged directly: you have 7 days to "capture" the transaction and charge the customer. Otherwise, the order will be cancelled.
 
-If the payment fails, the customer is redirected to the error page and
-the status is defined like configured in the module configuration.
+If the payment fails, the customer is redirected to the error page and the status is defined like configured in the module configuration.
 
-If successful, the customer is redirected to the success page. At this
-time the order status is “*Waiting for capture*” Once you’re ready to
-capture the transaction:
+If successful, the customer is redirected to the success page. At this step, the order status is “*Waiting for capture*”. Once you’re ready to capture the transaction:
 
--   If the configuration does not allow the creation of invoice, you
-    must create the invoice from the order overview. You can click on
-    “*Capture online*” This will send the capture information on the
-    TPP server. If successful, the invoice is created. The payment is
-    captured and you can create your shipment.
--   If the configuration allows the creation of invoice, click on the
-    invoice and on “*capture”* button. This will send the capture
-    information to HiPay Enterprise TPP server. If successful, the
-    invoice status changes to “*Paid*”.
+-   If the configuration does not allow the creation of invoice, you must create the invoice from the order overview. Click on
+    “*Capture online*”: this will send the capture information to the HiPay Enterprise server. If successful, the invoice is created.   
+    The payment is then captured and you can create your shipment.
+-   If the configuration allows the creation of invoice, click on the invoice and on the “*capture”* button. This will send the capture
+    information to the HiPay Enterprise server. If successful, the invoice status changes to “*Paid*”.
 
-You can also do the “*capture*” directly on your HiPay Enterprise TPP
-BackOffice. The invoice will be created automatically on your Magento
-BackOffice.
+You can also do the “*capture*” directly in your HiPay Enterprise back office. The invoice will then be automatically created in your Magento back office.
 
 ##Refund
 
-HiPay Enterprise TPP allows a refund online. To do this, simply create
-a "*Credit memo*" on the Invoice (not from the order).
+HiPay Enterprise allows online refunds. For this purpose, simply create a "*credit memo*" on the invoice (not from the order).
 
 ![refund](images/media/image12.png)
-You will have two options: “*Refund Offline*" (we are not interested in
-our case) or the "*Refund*".
+You will have two options: “*Refund Offline*" (not relevant in our case) or "*Refund*".
 
-Choose the amount and click on “*Refund*”. If successful, the credit
-memo is created and the refund is validated.
+Choose the amount and click on “*Refund*”. If successful, the credit memo is created and the refund is validated.
 
 ##Oneclick (only available for credit-card payment methods) 
 
