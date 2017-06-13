@@ -108,6 +108,18 @@ This document describes how to install and use the HiPay Enterprise module for M
 -   This module requires valid HiPay Enterprise credentials to be able to use it;
     please contact HiPay to get them.
 
+#Release notes
+
+Find here all the latest versions of the Magento module:
+
+| Date |Version| Level| Main Feature | 
+|----|----|----| -----------|
+| 06-12-2017| 1.7.0 |Major version | Oney Facily support  
+| 05-05-2017| 1.6.2 |  Minor version | Domain TokenJS
+| 04-13-2017| 1.6.1 |  Minor version | Security
+| 02-23-2017| 1.6.0 |  Major version | MO/TO support
+
+
 
 #Platform configuration
 
