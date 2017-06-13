@@ -157,7 +157,69 @@ Click on the "*Integration*" tab, then on "*Notifications*".
 
 Don’t forget to change {your-domain.com} by your own domain and specify the store code if you have enabled it on your Magento configuration.
 
+#Module features
 
+* 3-D Secure enabling/disabling
+* Oneclick option configuration with custom rules
+* Management of multiple cards per customer for one-click payment
+* IFrame integration, hosted page and custom card API
+* Mail management for transactions pending fraud validation (challenged)
+* Manual and automatic capture
+* Partial capture and refund
+* Payment in x installments without fees
+* Custom data management ( Easily send your data and view them in your HiPay Enterprise back office)
+* Use order currency for transaction if your shop is multi-currency
+ 
+ The module supports the following local payment methods :
+ 
+Europe
+ 
+ * **Ideal**
+ * **ING Home Pay**
+ * **Visa Qiwi Wallet**
+ * **Paypal**
+ * **SEPA Direct Debit**
+ 
+ Swiss
+ 
+ * **PostFinance Card**
+ * **PostFinance E-Finance**
+ 
+ Belgium
+ 
+  * **Belfius / Dexia Direct Net**
+  
+ Italia
+ 
+  * **Sisal**
+ 
+ Germany
+ 
+ * **Giropay**
+ * **Klarna Invoice**
+ * **Sofort Überweisung**
+ 
+ Brazil and Mexico
+ 
+ * **Itau**
+ * **Bradesco**
+ * **Banco do brasil**
+ * **Santander HomeBanking**
+ * **Aura**
+ * **Caïxa**
+ * **Oxxo**
+ * **BBVA Bancomer**
+ * **Banamex**
+ * **Satader Cash**
+ 
+ Russia
+ 
+ * **Visa WebMoney Transfer**
+ * **Yandex.Money**
+ * **Przelewy24**
+ 
+ ![magento connect](images/media/img-payment-methods.png)
+ 
 #Module installation
 
 ##Magento Connect
@@ -198,7 +260,7 @@ Once you have them, put them in the module configuration with your
 
 When using the Multi-site or Multi-store feature: you can use different HiPay credentials and payment methods for each Store View using the “*Current Configuration Scope*” select box. Uncheck the “Use Website” checkbox and specify the desired valued.
 
-### Additional parameters
+#### Additional parameters
 
 |  Name    | Description|
 |----------|:-------------:|
@@ -212,16 +274,28 @@ you must develop your own "invoicing" and make an override of *Mage_Sales_Model_
 If you keep the default Magento process, the transaction authorization will be processed in the currency chosen by the customer, and 
 the capture upon invoicing in the *base currency* of the store.
 
-### Basket configuration
+### Customer's cart items configuration
 
-This section addresses basket sending to the HiPay Enterprise back office during the transaction.
+This section addresses customer's cart items sending to the HiPay Enterprise back office during the transaction.
+
+Enabling this option applies to all enabled payment methods on your site.
+The information of the customer basket containing the method of delivery, the discounts and each product with the quantity,
+the sku, the tax are sent with the transaction.
+
+For some payment method, the sending of this information is obligatory, this option is therefore ignored if the transactions
+Are carried out with this method of payment. The customer's line items will be sent whether the option is activated or not.
+The payment methods concerned are **Klarna** Invoice and **Oney Facily Pay**.
+
+Oney's Fraud system requires additional configuration for shipping method and product categories.
+The configuration is explained in the following paragraph.
+
 Please note that this feature is still in beta version. For installation and configuration purposes, please contact our Business IT Services.
 
 ![](images/media/image-basket.png)
 
 |  Name    | Description|
 |----------|:-------------:|
-|  Activate basket   | Activate basket sending or not ("NO" by default)
+|  Send cart items   | Activate  customer's cart items sending or not ("NO" by default)
 |  Attribute ean   |  EAN is not a Magento attribute by default: you must define your custom attribute if you want to send it in the basket
 |  Load attribute *  |  Because EAN is not a default attribute, product loading is necessary to get the value. You can avoid loading by adding the attribute to the order and quote.  
 
@@ -240,7 +314,7 @@ There are several ways to do so. For example, you can:
                     <attribute_ean>
                         <to_order>*</to_order>
                     </attribute_ean>
-                </sales_convert_quote>
+              </sales_convert_quote>
             </fieldsets>
 
 You can test and see the code used in the Data.php.
@@ -258,6 +332,36 @@ You can test and see the code used in the Data.php.
                     $ean = $product->getData($attribute);
                 }
             }
+            
+#### Categories and shipping methods mapping
+
+To enable sending relevant information about delivery methods and product categories, mapping 
+is required between your data and HiPay data
+
+##### Categories mapping
+
+Only the top level categories are displayed and must be mapped. As long as you have not mapped a category a warning 
+icon is displayed and prompts you to do the mapping. If the mapping is not done then the transaction will be refused 
+by Oney. It is therefore important to check your mapping regularly in case of addition, modification of category.
+
+![](images/media/img-category-mapping.png)
+
+##### Shipping methods mapping
+
+A list of all delivery methods activated on the site is displayed.
+This mapping is necessary to indicate a match between your delivery methods and the delivery methods defined at HiPay.
+For each customer order, depending on the chosen configuration, this information is sent as a supplement to the customer's basket.
+
+For each mapping, you have to fill out the following information:
+
+   *   "Preparation delay": Estimated day time for order preparation
+   *   "Delivery delay" : Estimated day time for delivery
+   
+From this information, an estimated delivery day is calculated and sent with the transaction.
+Unworked days are not taken into account in this calculation.
+
+As with the mapping of categories **it is important that all payment methods be mapped**, so it is important
+to see your list if you change the configuration of your payment methods
 
 ##Payment methods configuration
 
