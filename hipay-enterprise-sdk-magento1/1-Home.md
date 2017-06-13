@@ -170,9 +170,9 @@ Don’t forget to change {your-domain.com} by your own domain and specify the st
 * Custom data management ( Easily send your data and view them in your HiPay Enterprise back office)
 * Use order currency for transaction if your shop is multi-currency
  
- The module supports the following local payment methods :
+The module supports the following local payment methods :
  
-Europe
+###Europe
  
  * **Ideal**
  * **ING Home Pay**
@@ -180,26 +180,26 @@ Europe
  * **Paypal**
  * **SEPA Direct Debit**
  
- Swiss
+###Swiss
  
  * **PostFinance Card**
  * **PostFinance E-Finance**
  
- Belgium
+###Belgium
  
   * **Belfius / Dexia Direct Net**
   
- Italia
+###Italia
  
   * **Sisal**
  
- Germany
+###Germany
  
  * **Giropay**
  * **Klarna Invoice**
  * **Sofort Überweisung**
  
- Brazil and Mexico
+###Brazil and Mexico
  
  * **Itau**
  * **Bradesco**
@@ -212,7 +212,7 @@ Europe
  * **Banamex**
  * **Satader Cash**
  
- Russia
+###Russia
  
  * **Visa WebMoney Transfer**
  * **Yandex.Money**
