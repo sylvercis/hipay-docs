@@ -1,6 +1,6 @@
-#Platform configuration
+# Platform configuration
 
-##Allow your servers IP addresses
+## Allow your servers IP addresses
 
 When a request is sent to the HiPay Enterprise servers, the IP address or IP address range from where the connection was made is
 verified. If it matches with the IP address supplied by the merchant at a previous stage, the request will be processed. In case of missing or incorrect information, the server will respond with an appropriate error message, indicating the error in the request.
@@ -8,11 +8,13 @@ verified. If it matches with the IP address supplied by the merchant at a previo
 To do this, you must log in to your HiPay Enterprise back office (https://merchant.hipay-tpp.com), click on the "*Integration*" tab,
 then on "*Security Settings*" and enter your IP address(es) in the "*IP Restriction*" section.
 
-![Important](images/media/image5.png)
-<br/>**Important!**
 
-When changing your IP address(es), make sure that all new IP addresses are configured for your account. If not, your server requests will be rejected.
-  
+<div class="alert alert-warning">
+	<i class="fa fa-warning"></i>
+	When changing your IP address(es), make sure that all new IP addresses are configured for your account. If not, your server requests will be rejected.
+</div>
+
+
 ![ip](images/media/image6.png)
 
 ##Choose a passphrase
@@ -25,7 +27,7 @@ First of all, you need to set a secret passphrase in your HiPay Enterprise back 
 
 ![passphrase](images/media/image7.jpg)
 
-##Configure redirection URLs
+## Configure redirection URLs
 
 To use the HiPay Enterprise module, you need to configure the redirection URLs in your HiPay Enterprise back office under
 “*Integration -&gt; Redirect Pages*”.
