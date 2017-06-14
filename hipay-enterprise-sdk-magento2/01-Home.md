@@ -7,3 +7,13 @@ The **HiPay Enterprise module for Magento 2** is a PHP module which allows you t
 # Objective
 
 This document describes the requirements, general workflow and installation procedure for the HiPay Enterprise module for Magento 2.
+
+# Release notes
+
+Find here all the latest versions of the Magento module:
+
+| Date |Version| Level| Main Feature |
+|----|----|----| -----------|
+| 05-31-2017| 1.1.0 |Major version |Oney,SEPA,Astropay [...]
+
+[See details of all versions](#release-notes-details)

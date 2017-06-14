@@ -130,4 +130,4 @@ Find here all the latest versions of the Magento module:
 | 02-23-2017| 1.6.0 |  Major version | MO/TO support
 
 
-[See details of all versions](#release-notes)
+[See details of all versions](#release-notes-details)
