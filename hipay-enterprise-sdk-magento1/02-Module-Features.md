@@ -1,62 +1,64 @@
 #Module features
 
 * 3-D Secure enabling/disabling
-* Oneclick option configuration with custom rules
+* One-click option configuration with custom rules
 * Management of multiple cards per customer for one-click payment
-* IFrame integration, hosted page and custom card API
-* Mail management for transactions pending fraud validation (challenged)
+* iFrame integration, hosted page and custom card API
+* Mail management for transactions pending fraud validation ("challenged")
 * Manual and automatic capture
 * Partial capture and refund
 * Payment in x installments without fees
-* Custom data management ( Easily send your data and view them in your HiPay Enterprise back office)
+* Custom data management (easily send and view your data in your HiPay Enterprise back office)
 * Use order currency for transaction if your shop is multi-currency
 
-The module supports the following local payment methods :
+The module supports the following local payment methods:
 
 **Europe**
 
- * **Ideal**
- * **ING Home Pay**
- * **Visa Qiwi Wallet**
- * **Paypal**
+ * **iDEAL**
+ * **ING Home'Pay**
+ * **Visa QIWI Wallet**
+ * **PayPal**
  * **SEPA Direct Debit**
 
-**Swiss**
+**Switzerland**
 
  * **PostFinance Card**
- * **PostFinance E-Finance**
+ * **PostFinance E-finance**
 
 **Belgium**
 
   * **Belfius / Dexia Direct Net**
 
-**Italia**
+**Italy**
 
-  * **Sisal**
+  * **SisalPay**
 
 **Germany**
 
  * **Giropay**
  * **Klarna Invoice**
- * **Sofort Überweisung**
+ * **SOFORT Überweisung**
 
 **Brazil and Mexico**
 
- * **Itau**
+ * **Itaú**
  * **Bradesco**
- * **Banco do brasil**
+ * **Banco do Brasil**
  * **Santander HomeBanking**
  * **Aura**
  * **Caïxa**
- * **Oxxo**
+ * **OXXO**
  * **BBVA Bancomer**
  * **Banamex**
- * **Satader Cash**
+ * **Santander Cash**
 
 **Russia**
 
  * **Visa WebMoney Transfer**
  * **Yandex.Money**
+ 
+ **Poland**
  * **Przelewy24**
 
  ![magento connect](images/media/img-payment-methods.png)
