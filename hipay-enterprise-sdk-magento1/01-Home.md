@@ -120,10 +120,10 @@ Please find here all the latest versions of the Magento module:
 
 | Date |Version| Level| Main feature | 
 |----|----|----| -----------|
-| 06-12-2017| 1.7.0 |Major version | Oney Facily Pay supported  
+| 06-12-2017| 1.7.0 |Major version | Supports Oney Facily Pay  
 | 05-05-2017| 1.6.2 |  Minor version | TokenJS Domain
 | 04-13-2017| 1.6.1 |  Minor version | Security
-| 02-23-2017| 1.6.0 |  Major version | MO/TO supported
+| 02-23-2017| 1.6.0 |  Major version | Supports MO/TO
 
 
 [See details of all versions](#release-notes-details)
