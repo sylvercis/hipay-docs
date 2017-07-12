@@ -53,7 +53,7 @@ The module supports the following payment methods:
  * **Banco do Brasil**
  * **Santander HomeBanking**
  * **Aura**
- * **La Caixa**
+ * **Caixa**
  * **OXXO**
  * **BBVA Bancomer**
  * **Banamex**
