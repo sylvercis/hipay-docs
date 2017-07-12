@@ -59,8 +59,8 @@ Here are the instructions to follow when merchants need to create a new order an
 |  Name    | Description|
 |----------|:-------------:|
 |  Send an email to customer for paying    |  If "YES", an email with a payment link is sent to the customer for hosted payment. If "NO", the payment has to be done by the administrator in the back office.
-|  Payment Email Sender   | Choose the sender of the email with the payment link.
-|  Payment Template   | Choose the email template.
+|  Payment Email Sender   | Chooses the sender of the email with the payment link.
+|  Payment Template   | Chooses the email template.
 
 ### MO/TO payment for hosted methods
 
