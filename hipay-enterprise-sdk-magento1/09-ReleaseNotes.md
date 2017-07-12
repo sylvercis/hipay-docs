@@ -15,7 +15,7 @@
 The module now supports:*
   * *OXXO*
   * *Aura*
-  * *Caïxa*
+  * *Caixa*
   * *BBVA Bancomer*
   * *Santander cash*
   * *Bradesco*
