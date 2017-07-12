@@ -45,6 +45,7 @@ The module supports the following local payment methods:
  * **Itaú**
  * **Bradesco**
  * **Banco do Brasil**
+ * **Boleto**
  * **Santander HomeBanking**
  * **Aura**
  * **Caixa**
