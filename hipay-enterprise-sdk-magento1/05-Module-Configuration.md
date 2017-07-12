@@ -28,8 +28,8 @@ When using the Multi-site or Multi-store feature: you can use different HiPay cr
 
 |  Name    | Description|
 |----------|:-------------:|
-|  Device fingerprint    | Define if a fingerprint is sent with the transaction ("YES" by default)
-|  Use order currency for transaction*    | Define the currency used for the order. By default, orders are always processed with the base currency of the store.
+|  Device fingerprint    | Defines if a fingerprint is sent with the transaction ("YES" by default)
+|  Use order currency for transaction*    | Defines the currency used for the order. By default, orders are always processed with the base currency of the store.
 
 If you activate "*Use order currency for transaction*", your payment method must be configured in "Sale" mode.
 If you want to use this feature in "*Authorize*" mode and do "manual captures" in your back office when invoicing orders,
@@ -59,7 +59,7 @@ Please note that this feature is still in beta version. For questions relating t
 
 |  Name    | Description|
 |----------|:-------------:|
-|  Send cart items   | Activate  customer's cart items sending or not ("NO" by default)
+|  Send cart items   | Activates  customer's cart items sending or not ("NO" by default)
 |  Attribute ean   |  EAN is not a Magento attribute by default: you must define your custom attribute if you want to send it in the basket
 |  Load attribute*  |  Because EAN is not a default attribute, product loading is necessary to get the value. You can avoid loading by adding the attribute to the order and quote.  
 
