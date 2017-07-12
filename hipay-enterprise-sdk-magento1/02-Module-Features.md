@@ -47,7 +47,7 @@ The module supports the following local payment methods:
  * **Banco do Brasil**
  * **Santander HomeBanking**
  * **Aura**
- * **Caïxa**
+ * **Caixa**
  * **OXXO**
  * **BBVA Bancomer**
  * **Banamex**
