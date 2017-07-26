@@ -10,10 +10,10 @@ This document describes the requirements, general workflow and installation proc
 
 # Release notes
 
-Find here all the latest versions of the Magento module:
+Please find here all the latest versions of the Magento 2 module:
 
-| Date |Version| Level| Main Feature |
+| Date |Version| Level| Main feature |
 |----|----|----| -----------|
-| 05-31-2017| 1.1.0 |Major version |Oney,SEPA,Astropay [...]
+| 05-31-2017| 1.1.0 |Major version |Oney, SEPA, AstroPay [...]
 
 [See details of all versions](#release-notes-details)
