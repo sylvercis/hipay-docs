@@ -5,18 +5,14 @@
 While every effort has been made to ensure the accuracy of the information contained in this publication, the information is supplied without representation or warranty of any kind, is subject to change without notice and does not represent a commitment on the part of HiPay.
 HiPay, therefore, assumes no responsibility and shall have no liability, consequential or otherwise, of any kind arising from this material or any part thereof, or any supplementary materials subsequently issued by HiPay.
 
-**TECHNICAL SUPPORT** If you need any complementary information concerning the technical implementation of HiPay Enterprise, please don’t hesitate to visit our Support Center ([*http://support.hipay.com*](http://support.hipay.com)) or contact our Business IT Services.
-
-- Email: support.tpp@hipay.com
-- Telephone: +33 (0)1 82 88 68 68
-
+**TECHNICAL SUPPORT** If you need any complementary information concerning the technical implementation of HiPay Enterprise, please don’t hesitate to visit our Support Center ([*https://support.hipay.com/hc/en-us*](https://support.hipay.com/hc/en-us)) or submit a request ([*https://support.hipay.com/hc/en-us/requests/new*] (https://support.hipay.com/hc/en-us/requests/new)) to our Support team.
 
 # About this guide
 
 ## Purpose
 
 This document is designed to provide you with details on how to integrate your business to the HiPay Enterprise Payment Gateway. 
-This document gives you step-by-step instructions on how to simply and quickly get up and running with our services as well as detailed reference material.
+It gives you step-by-step instructions on how to simply and quickly get up and running with our services as well as detailed reference material.
 
 Where applicable, this document refers to the related documentation with further details.
 
@@ -100,12 +96,12 @@ This document describes how to install and use the HiPay Enterprise module for M
 
 ## Table of contents
 1. [Release notes](#release-notes)
-2. [Module Features](#module-features)
+2. [Module features](#module-features)
 2. [Platform configuration](#platform-configuration)
 3. [Module installation](#module-installation)
 4. [Module configuration](#module-configuration)
 5. [Payment configuration](#payment-configuration)
-6. [Front-End Payment](#front-end-payment-examples)
+6. [Front-end payment](#front-end-payment-examples)
 
 
 ## Please note
@@ -120,14 +116,14 @@ This document describes how to install and use the HiPay Enterprise module for M
 
 # Release notes
 
-Find here all the latest versions of the Magento module:
+Please find here all the latest versions of the Magento module:
 
-| Date |Version| Level| Main Feature | 
+| Date |Version| Level| Main feature | 
 |----|----|----| -----------|
-| 06-12-2017| 1.7.0 |Major version | Oney Facily support  
-| 05-05-2017| 1.6.2 |  Minor version | Domain TokenJS
+| 06-12-2017| 1.7.0 |Major version | Supports Oney Facily Pay  
+| 05-05-2017| 1.6.2 |  Minor version | TokenJS Domain
 | 04-13-2017| 1.6.1 |  Minor version | Security
-| 02-23-2017| 1.6.0 |  Major version | MO/TO support
+| 02-23-2017| 1.6.0 |  Major version | Supports MO/TO
 
 
 [See details of all versions](#release-notes-details)
