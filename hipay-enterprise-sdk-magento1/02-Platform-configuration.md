@@ -1,6 +1,6 @@
 # Platform configuration
 
-## Allow your servers IP addresses
+## Allow your servers' IP addresses
 
 When a request is sent to the HiPay Enterprise servers, the IP address or IP address range from where the connection was made is
 verified. If it matches with the IP address supplied by the merchant at a previous stage, the request will be processed. In case of missing or incorrect information, the server will respond with an appropriate error message, indicating the error in the request.
@@ -11,7 +11,7 @@ then on "*Security Settings*" and enter your IP address(es) in the "*IP Restrict
 
 <div class="alert alert-warning">
 	<i class="fa fa-warning"></i>
-	When changing your IP address(es), make sure that all new IP addresses are configured for your account. If not, your server requests will be rejected.
+	When changing your IP address(es), make sure that all the new IP addresses are configured for your account. If not, your server requests will be rejected.
 </div>
 
 
