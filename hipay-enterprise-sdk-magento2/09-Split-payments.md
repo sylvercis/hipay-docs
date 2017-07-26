@@ -27,7 +27,7 @@ Before using them, you need to create payment profiles.
 
 A payment profile defines how the payment is split.
 
-In your Magento Admin Panel, select `Hipay Enterprise` => `Payment Profiles`.
+In your Magento Admin Panel, select `HiPay Enterprise` => `Payment Profiles`.
 
 ![legend](images/payment_profiles_list.png)
 
@@ -70,7 +70,7 @@ A split payment overview is available in your Magento Admin Panel in `HiPay Ente
 For each installment, you can edit, delete or pay it immediately.  
 You can also change the payment date or the amount to pay.
 
-**Be careful: if you are not sure what to do, please contact HiPay's Business IT Services for technical support.**
+**Be careful: if you are not sure what to do, please submit a request ([*https://support.hipay.com/hc/en-us/requests/new*] (https://support.hipay.com/hc/en-us/requests/new)) to our Support team.**
 
 ![legend](images/split_payment_list.png)
 
