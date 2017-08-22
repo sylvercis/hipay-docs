@@ -14,7 +14,7 @@ By default, this value is set to 1000 and is too low to support the saving of th
 
 To configure your HiPay Enterprise API credentials, you must click on "*HiPay Enterprise*" in the Magento configuration section (*System -&gt; Configuration -&gt; Sales*). If you have administrative rights but are not allowed to access the configuration of the payment method, please log out and log back in.
 
-![](images/media/image9.jpg)
+![](images/media/image9.png)
 
 You can find your HiPay Enterprise API credentials in your HiPay Enterprise back office, under “*Integration -&gt; Security Settings
 -&gt;* *Api credentials*”.
