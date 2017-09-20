@@ -2,12 +2,12 @@
 
 ## Objectives 
 
-This section aims to describe the omnichannel philosophy behind the HiPay Enterprise platform and how to leverage its features through our APIs.  
-Among other features, this document outlines the POS (point-of-sale) capabilities of the HiPay Enterprise platform.
+This document aims to describe the omnichannel philosophy behind the HiPay Enterprise platform and how to leverage its features through our APIs.  
+Among other features, the POS capabilities of the HiPay Enterprise platform are outlined hereafter.
 
 ## Acronyms and abbreviations
 
-The following acronyms and abbreviations are used in this guide.
+The following acronyms and abbreviations are used in this document.
 
 | Acronym   | Full name |
 |----------|-------------|
