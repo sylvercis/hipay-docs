@@ -89,19 +89,19 @@ These parameters are listed below.
 
 | Field name | Format | Req. | Specific to POS | Description |
 | --- | :---: | --- | :---: | --- |
-| *eci* | N | Yes | No | Electronic Commerce Indicator (ECI). The ECI indicates the security level at which the payment information is processed between the cardholder and merchant. In this case, **its value must be set to `10` (in-store payment)**.
-| *payment_product* | AN | No | No | The payment method used to proceed checkout. In case of POS payments, you don't know in advance the brand of the card which will be introduced in the payment terminal. Therefore, **its value must be blank.**
-| *initialize\_payment_terminal* | N | Yes | Yes | Tells the platform whether a payment terminal should be initialized with this transaction. As this section describes how to initialize payment terminals, **this value must be set to `1`**.
-| *payment\_terminal_id* | N | No | Yes | The ID of the payment terminal on which you need to initialize the transaction. These IDs are provided to you by HiPay for each provisioned payment terminal. You must provide a value if you want to send the transaction on a specific payment terminal. 
-| *store_id* | N | No | Yes | The ID of the store in which the user processes his payment. These IDs are provided to you by HiPay when we register your stores in our system. **Providing a value is strongly recommended.**
-| *order_point* | A | No | No | The order point used by the customer to place his order. This parameter takes two values: `web` or `store`. If your customer is ordering from a tablet in your store, you must provide `store` (the `web` value would only be useful for e-reservation orders). **Providing a value is strongly recommended.**
-| *pos\_transaction_lifetime* | N | No | Yes | The lifetime of the transaction on the payment terminal, in seconds. If the transaction hasn't been executed in this timeframe, the transaction will transition to the *expired* status. For example, if you want the transaction to expire within 5 minutes if it hasn't been processed, provide `600` (600 seconds = 5 minutes).
+| *eci* | N | Yes | No | Electronic Commerce Indicator. The ECI indicates the security level at which the payment information is processed between the cardholder and the merchant. In this case, **its value must be set to `10` (In-store payment)**.
+| *payment_product* | AN | No | No | Payment method used to proceed with checkout. In the case of POS payments, you don't know in advance the brand of the card which will be used with the payment terminal. Therefore, **its value must be blank.**
+| *initialize\_payment_terminal* | N | Yes | Yes | Tells the platform if a payment terminal should be initialized with the related transaction. As this section describes how to initialize payment terminals, **its value must be set to `1`**.
+| *payment\_terminal_id* | N | No | Yes | ID of the payment terminal on which you need to initialize the transaction. These IDs are supplied by HiPay for each provisioned payment terminal. You must provide a value if you want to send the transaction to a specific payment terminal. 
+| *store_id* | N | No | Yes | ID of the store in which customers process their payment. These IDs are supplied by HiPay when we register your stores in our system. **Providing a value is strongly recommended.**
+| *order_point* | A | No | No | Order point used by customers to place orders. This parameter accepts two values: `web` or `store`. If your customer is ordering from a tablet in your store, you must provide `store` (the `web` value would only be useful for e-reservation orders). **Providing a value is strongly recommended.**
+| *pos\_transaction_lifetime* | N | No | Yes | Lifetime of the transaction on the payment terminal, in seconds. If the transaction has not been processed within this timeframe, it will transition to the *expired* status. For example, if you want the transaction to expire within 5 minutes if it hasn't been processed, provide `600` (600 seconds = 5 minutes).
 
-You also need to pass other global parameters related to the order, such as the amount, the customer e-mail adress, etc. All those parameters are documented in the [HiPay Enterprise Gateway API section](/doc-api/enterprise/gateway/#!/payments/requestNewOrder).
+You also need to send other global parameters related to the order, such as the amount, the customer's e-mail address, etc. All these parameters are documented in the [HiPay Enterprise Gateway API section](/doc-api/enterprise/gateway/#!/payments/requestNewOrder).
 
-#### Example call
+#### Call example
 
-Here is an example of cURL call for initializing a transaction on a payment terminal on the test environment:
+Here is an example of cURL call for initializing a transaction on a payment terminal in the test environment:
 
 `````
 curl -X POST \
@@ -125,15 +125,15 @@ curl -X POST \
 'https://stage-secure-gateway.hipay-tpp.com/rest/v1/order'
 `````
 
-You can also perform test API calls from [the live testing tool](/doc-api/enterprise/gateway/#!/payments/requestNewOrder).
+You can also perform test API calls from [our live testing tool](/doc-api/enterprise/gateway/#!/payments/requestNewOrder).
 
 ### Transaction lifecycle
 
-When the transaction is initialized on the payment terminal, you may display a waiting screen on your application, indicating that the user must pay on the terminal.
+When the transaction is initialized on the payment terminal, you may display a waiting screen on your application, indicating that the customer must pay on the terminal.
 
-Once the transaction is paid, you need to have a technical callback in place allowing you to know the transaction status (whether it's paid or declined). This will allow you to confirm the order and display the proper feedback screen on your cash register application.
+Once the transaction is paid, you need to have a technical callback in place allowing you to know the transaction status (whether it is paid or declined). This will allow you to confirm the order and display the proper feedback screen on your cash register application.
 
-Transaction status updates are delivered through *HTTP server-to-server notifications*. These notifications are exactly the same for both e-commerce and payment terminal transactions. **Refer to the [*Server-to-server notifications* section of the HiPay Enterprise platform overview document](/getting-started/platform-hipay-enterprise/overview/#server-to-server-notifications)** to learn how to manage notifications and status updates.
+Transaction status updates are delivered through *HTTP server-to-server notifications*. These notifications are exactly the same for both e-commerce and payment terminal transactions. **Please refer to the [*server-to-server notifications* section of the HiPay Enterprise platform overview document](/getting-started/platform-hipay-enterprise/overview/#server-to-server-notifications)** to learn how to manage notifications and status updates.
 
 Regarding the *status* and *state* parameters described in the server-to-server notifications section mentioned above, here are some basic scenarios that you will encounter:
 
@@ -141,17 +141,17 @@ Regarding the *status* and *state* parameters described in the server-to-server 
 
 In that case, the workflow would be:
 
-1. The transaction is initialized, its state is set to **`pending`** and its status set to **`174`** (Awaiting Terminal).
-2. The user pays the transaction on the payment terminal.
+1. The transaction is initialized, its state is set to **`pending`** and its status to **`174`** (Awaiting Terminal).
+2. The customer pays the transaction on the payment terminal.
 3. Your server receives a HTTP notification with a status update. The transaction *state* is set to **`completed`** and its *status* set to **`117`** (Capture Requested).
 
 #### The transaction is declined on the terminal
 
 In that case, the workflow would be:
 
-1. The transaction is initialized, its state is set to **`pending`** and its status set to **`174`** (Awaiting Terminal).
+1. The transaction is initialized, its state is set to **`pending`** and its status to **`174`** (Awaiting Terminal).
 2. The user encounters an error and his payment is refused.
-3. Your server receives a HTTP notification with a status update. The transaction *state* is set to **`declined`** and its *status* set to **`113`** (Refused).
+3. Your server receives a HTTP notification with a status update. The transaction *state* is set to **`declined`** and its *status* to **`113`** (Refused).
 
 Note that "Refused" is just an example and you may receive other statuses depending on the error. However, in case of error, the *state* value will always be either `declined` or `error`.
 
@@ -160,9 +160,9 @@ Note that "Refused" is just an example and you may receive other statuses depend
 In that case, the workflow would be:
 
 1. The transaction is initialized with a lifetime of 60 seconds, its state is set to **`pending`** and its status set to **`174`** (Awaiting Terminal).
-2. The user waits one minute and doesn't make the payment.
+2. The customer waits one minute and doesn't make the payment.
 3. Your server receives a HTTP notification with a status update. The transaction *status* is set to **`114`** (Expired).
 
-#### Statuses list
+#### List of statuses
 
-In order to get the complete list of statuses, check out the [HiPay Enterprise platform overview appendicies](https://developer.hipay.com/getting-started/platform-hipay-enterprise/appendices/).
+In order to get the complete list of statuses, please refer to the [HiPay Enterprise platform overview appendices](https://developer.hipay.com/getting-started/platform-hipay-enterprise/appendices/).
