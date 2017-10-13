@@ -1,36 +1,36 @@
 # Dashboard
 
-The HiPay Marketplace cash-out integration for Mirakl provide a dashboard, this interface aim to:
+The HiPay Marketplace cash-out integration for Mirakl provides you with a dashboard, which aims to:
 
-- Inform you of your vendors status, transfers and withdraw
-- Give you the capacity to rerun a previously failed action
-- Centralize all informations relating to ineractions between HiPay and Mirakl
+- Inform you of your vendors' status, transfers and withdrawals,
+- Give you the possibility to rerun a previously failed action,
+- Centralize all information relating to interactions between HiPay and Mirakl.
 
-You can reach the dashboard at the following URL `https://cashout.merchant-example.com/index.php` (the URL may depends on your web server software configuration)
+You can access the dashboard at the following URL: `https://cashout.merchant-example.com/index.php` (the URL depends on your web server software configuration).
 
 ## Login
 
-You can log in to the dashboard by using the HiPay web service credentials for the technical account.
+Use the HiPay web service credentials for the technical account to log in to the dashboard.
 
-## Vendors management
+## Vendor management
 
 Each processed vendor is saved in the HiPay Marketplace cash-out integration for Mirakl database.
 
-Vendors logs are displayed with the following informations : 
+Vendors logs are displayed with the following information: 
 
 |Name       | Description  |
 |-----------|--------------|
-| Mirakl ID  | Shop Id in the mirakl back-office |
-| Login  | Login for this shop in HiPay back-office |
+| Mirakl ID  | Store ID in the Mirakl back office |
+| Login  | Login for this store in the HiPay back office |
 | Status  | Status of the vendors in the HiPay Marketplace cash-out integration for Mirakl. Possible values are `success` or `warning` |
-| Wallet account status  | Status the HiPay wallet account. Possible values are `created`, `not created`, `identified` or `not identified`  |
-| HiPay ID  | Id of the wallet account |
+| Wallet account status  | Status of the HiPay wallet account. Possible values are `created`, `not created`, `identified` or `not identified`  |
+| HiPay ID  | ID of the wallet account |
 | Date  | Date of log creation |
-| Documents sent  | Click on `Show details` to see status of sent documents |
+| Documents sent  | Click on `Show details` to see the status of sent documents. |
 
 You can filter Vendors logs by `status`, `wallet account status` and `time period`.
 
-If `status` of a vendor is `warning` you get the detail of the error by clicking the tooltip `Show message`.
+If the `status` of a vendor is `warning`, you get the detail of the error by clicking on the tooltip `Show message`.
 
 ![vendor-warning](images/vendor-warning.png)
 
