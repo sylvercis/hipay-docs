@@ -89,7 +89,7 @@ These parameters are listed below.
 
 | Field name | Format | Req. | Specific to POS | Description |
 | --- | :---: | --- | :---: | --- |
-| *eci* | N | Yes | No | Electronic Commerce Indicator. The ECI indicates the security level at which the payment information is processed between the cardholder and the merchant. In this case, **its value must be set to `10` (In-store payment)**.
+| *eci* | N | Yes | No | Electronic Commerce Indicator. The ECI indicates the security level at which the payment information is processed between the cardholder and the merchant. In this case, **its value must be set to `10` (Point of sale payment)**.
 | *payment_product* | AN | No | No | Payment method used to proceed with checkout. In the case of POS payments, you don't know in advance the brand of the card which will be used with the payment terminal. Therefore, **its value must be blank.**
 | *initialize\_payment_terminal* | N | Yes | Yes | Tells the platform if a payment terminal should be initialized with the related transaction. As this section describes how to initialize payment terminals, **its value must be set to `1`**.
 | *payment\_terminal_id* | N | No | Yes | ID of the payment terminal on which you need to initialize the transaction. These IDs are supplied by HiPay for each provisioned payment terminal. You must provide a value if you want to send the transaction to a specific payment terminal. 
