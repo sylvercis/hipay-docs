@@ -2,7 +2,7 @@
 
 This section is useful if you already have the HiPay Marketplace cash-out integration for Mirakl installed on your server and want to update it.
 
-Please remember that the project HiPay Marketplace cash-out **integration** for Mirakl relies on a ***core library*** which is named [HiPay Marketplace cash-out **library** for Mirakl](https://github.com/hipay/hipay-wallet-cashout-mirakl-library). You can either update the full project or the core library only. In most cases, you will only need to update the core library. Only update the full project if new versions contain features you need or on the recommendation of HiPay's Business IT Services.
+Please remember that the HiPay Marketplace cash-out **integration** for Mirakl project relies on a ***core library*** which is named [HiPay Marketplace cash-out **library** for Mirakl](https://github.com/hipay/hipay-wallet-cashout-mirakl-library). You can either update the full project or the core library only. In most cases, you will only need to update the core library. Only update the full project if new versions contain features you need or on the recommendation of HiPay's Business IT Services.
 
 Both procedures are documented below.
 
@@ -25,7 +25,7 @@ Updating dependencies (including require-dev)
 
 ## Full project update procedure
 
-### 1. Backup
+### 1. Make a backup
 
 Make sure you have a backup before updating the full project. You may copy the full project directory if you're not sure. For example, if your project directory is named `hipay_mirakl`:
 
@@ -52,7 +52,7 @@ drwxr-xr-x  2 root root 4096 May  4 08:13 hooks
 
 **If you get an output like this, go to the next section ("Update the project").**
 
-If you get an error message like `ls: cannot access .git: No such file or directory`, type the following commands to init Git:
+If you get an error message like `ls: cannot access .git: No such file or directory`, type the following commands to initialize Git:
 
 	git init
 	git remote add origin https://github.com/hipay/hipay-wallet-cashout-mirakl-integration
@@ -66,7 +66,7 @@ First, fetch the new tags available:
 Then, determine the version number to which you want to upgrade. Check out the [releases page](https://github.com/hipay/hipay-wallet-cashout-mirakl-integration/releases) for more information. 
 
 **When upgrading to a major version (example: from v1.x.x to v2.x.x), make sure that you know the upgrading details.** Do not hesitate to contact HiPay's Business IT Services on our [Support Center](https://support.hipay.com) if you need more information. You can check the version of your installation by typing `cat composer.json | grep version`. You should get an output similar to: 
-> "version": "2.0.3",
+> "version": "2.0.3".
 
 When you have determined the version number to which you want to upgrade, type the following command, **replacing xxx by the version number**:
 
@@ -80,11 +80,11 @@ Install the dependencies using Composer:
 
 	$ composer install
 	
-If new parameters were added into the project, you will be asked to provide values for them.
+If new parameters were added to the project, you will be asked to provide values for them.
 
 ### 5. Update the database
 
-Finally, go to the project directory: 
+Go to the project directory: 
 
 	$ cd hipay_mirakl
 
@@ -92,15 +92,15 @@ Run the following command:
 
 	$ php bin/console orm:schema-tool:update --dump-sql --force
 
-### 6. Permissions
+### 6. Change permissions
 
-Run the following command:
+Run the following commands:
 
 	$ chmod 777 /var/log/hipay.log
 
 	$ chmod 777 -R var/
 
-### 6. Permissions
+### 7. Recover vendors logs (optional)
 
 If there are existing vendors in the database but no logs linked to them, you can generate logs by running the following command:
     
