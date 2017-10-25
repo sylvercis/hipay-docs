@@ -14,7 +14,7 @@ By default, this value is set to 1000 and is too low to support the saving of th
 
 To configure your HiPay Enterprise API credentials, you must click on "*HiPay Enterprise*" in the Magento configuration section (*System -&gt; Configuration -&gt; Sales*). If you have administrative rights but are not allowed to access the configuration of the payment method, please log out and log back in.
 
-![](images/media/image9.png)
+![](images/image9.png)
 
 You can find your HiPay Enterprise API credentials in your HiPay Enterprise back office, under “*Integration -&gt; Security Settings
 -&gt;* *Api credentials*”.
@@ -55,7 +55,7 @@ The configuration is explained in the following paragraph.
 
 Please note that this feature is still in beta version. For questions relating to installation and configuration, please don’t hesitate to visit our Support Center ([*https://support.hipay.com/hc/en-us*](https://support.hipay.com/hc/en-us)) or submit a request ([*https://support.hipay.com/hc/en-us/requests/new*] (https://support.hipay.com/hc/en-us/requests/new)) to our Support team.
 
-![](images/media/image-basket.png)
+![](images/image-basket.png)
 
 |  Name    | Description|
 |----------|:-------------:|
@@ -108,7 +108,7 @@ Only the top level categories are displayed and must be mapped. As long as you h
 icon is displayed and prompts you to do the mapping. If the mapping is not done, then the transaction will be refused 
 by Oney. It is therefore important to check your mapping regularly when adding or modifying a category.
 
-![](images/media/img-category-mapping.png)
+![](images/img-category-mapping.png)
 
 ##### Shipping methods mapping
 
@@ -134,7 +134,7 @@ Configuration*).
 
 You will then see a list of payment methods with all the HiPay Enterprise integration possibilities.
 
-![](images/media/image22.png)
+![](images/image22.png)
 
 ### HiPay Enterprise Credit Card API
 (only available for credit card and debit card payment methods)

@@ -32,7 +32,7 @@ You can also do the “*capture*” directly in your HiPay Enterprise back offic
 
 HiPay Enterprise allows online refunds. For this purpose, simply create a "*credit memo*" on the invoice (not from the order).
 
-![refund](images/media/image12.png)
+![refund](images/image12.png)
 You have two options: “*Refund Offline*" (not relevant in our case) or "*Refund*".
 
 Choose the amount and click on “*Refund*”. If successful, the credit memo is created and the refund is validated.
@@ -49,7 +49,7 @@ Here are the instructions to follow when merchants need to create a new order an
 
 ### Configuration
 
-![](images/media/image-moto.png)
+![](images/image-moto.png)
 
 - Under “*System -&gt; Configuration -&gt; HiPay Entreprise*”, fill in specific credentials for MO/TO transactions in the
     "HiPay Enterprise credentials MO/TO" section. If they are not specified, standard credentials will be used.
@@ -83,7 +83,7 @@ payment profiles under: *Sales &gt; HiPay &gt; Split Payment Profiles &gt; Add p
 
 A payment profile defines the billing cycle of an order, for example:
 
-![payment](images/media/image13.png)
+![payment](images/image13.png)
 
 ### Configuration parameters
 
@@ -110,10 +110,10 @@ Split payment statuses:
 -   “*Pending*” payments are not processed yet: you can change the date or other parameters.
 -   “*Failed*” payments: you will receive an email when a split payment has failed and an action is required. You can retry the payment by switching the status to "Pending".
 
-![](images/media/image14.jpg)
+![](images/image14.jpg)
 
 ### Split payment retry
 
 You can change the due date or force payment immediately for pending or failed split payments:
 
-![](images/media/image15.png)
+![](images/image15.png)

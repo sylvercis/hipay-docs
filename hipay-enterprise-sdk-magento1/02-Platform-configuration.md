@@ -15,7 +15,7 @@ then on "*Security Settings*" and enter your IP address(es) in the "*IP Restrict
 </div>
 
 
-![ip](images/media/image6.png)
+![ip](images/image6.png)
 
 ##Choose a passphrase
 
@@ -25,7 +25,7 @@ A unique signature is generated each time HiPay uses a merchant URL, notificatio
 
 First of all, you need to set a secret passphrase in your HiPay Enterprise back office under “*Integration -&gt; Security Settings -&gt; Secret Passphrase*”.
 
-![passphrase](images/media/image7.jpg)
+![passphrase](images/image7.jpg)
 
 ## Configure redirection URLs
 

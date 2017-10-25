@@ -10,4 +10,4 @@ To install it, just get the “extension key”. Then go to your Magento adminis
 Paste the “extension key” under “Install New Extensions” and follow these
 steps:
 
-![magento connect](images/media/image8.png)
+![magento connect](images/image8.png)
