@@ -1,10 +1,10 @@
 # HiPay Enterprise JavaScript SDK for tokenization (Direct Post)
 
-The HiPay Enterprise JavaScript SDK for tokenization allows you to tokenize credit or debit cards using the HiPay Enterprise payment platform, directly from the web browser. This method (called Direct Post in the PCI Council terminology) enables you to offer a unified payment workflow to your customers while remaining PCI compliant.
+The HiPay Enterprise JavaScript SDK for tokenization allows you to tokenize credit or debit cards using the HiPay Enterprise payment platform, directly from the web browser. It enables you to offer a unified payment workflow to your customers while remaining PCI compliant.
 
 # Security principle
 
-Payment data (card number, card verification code and so on) will never hit your server: they will remain in the browser and will be sent directly to the HiPay Enterprise Secure Vault. This method is called "Direct Post". That way, you can create your own payment form, hosted on your server. Once the user validates the form, payment data are sent to the HiPay Enterprise platform through the HiPay Enterprise JavaScript SDK, which returns a token. Then, you can process payments with the token on the server side.
+Payment data (e.g.: card number, card verification code...) will never hit your server: they will remain in the browser and will be sent directly to the HiPay Enterprise Secure Vault. With this method (called "Direct Post" in the PCI Council's terminology), you can create your own payment form, hosted on your server. Once the user validates the form, payment data are sent to the HiPay Enterprise platform through the HiPay Enterprise JavaScript SDK, which returns a token. Then, you can process payments with the token on the server side.
 
 # Installation
 
@@ -32,7 +32,7 @@ You can also download the source code in ZIP format.
 
 ## Scope
 
-You can test our example app which is available in the `example/public` directory. This app leverages both the HiPay JavaScript SDK and PHP SDK in order to tokenize the card number (in the browser, using the JavaScript SDK) and make a transaction with this token on the server side using the PHP SDK.
+You can test our example app, which is available in the `example/public` directory. This app leverages both the HiPay JavaScript SDK and PHP SDK in order to tokenize the card number (in the browser, using the JavaScript SDK) and create a transaction with this token on the server side using the PHP SDK.
 
 ![HiPay Enterprise Direct Post Simulator](images/screenshot.png)
 
@@ -48,15 +48,15 @@ In order to test the example app, open a terminal and execute setup.sh with init
 
 	$ ./setup.sh init
 
-Then, you need to copy the following file: `example/config/credentials.php.dist` to `example/config/credentials.php` and open it to put your own HiPay Enterprise private credentials. Follow the instructions inserted in PHP comments.
-Then, you need to copy the following file: `example/public/credentials_public.json.dist` to `example/public/credentials_public.json` and open it to put your own HiPay Enterprise public credentials.
+Copy the following file: `example/config/credentials.php.dist` to `example/config/credentials.php` and open it to put your own HiPay Enterprise private credentials. Follow the instructions inserted in PHP comments.
+Then, copy the following file: `example/public/credentials_public.json.dist` to `example/public/credentials_public.json` and open it to put your own HiPay Enterprise public credentials.
 
 Finally, open your web browser and go to: http://localhost:8080. 
 You should see the form shown in the screenshot above.
 
 # Integration guide
 
-The following integration guide describes step by step how to use the HiPay Enterprise JavaScript SDK for tokenization. The implementation can also be found in the example app (see the previous section).
+The following integration guide describes step by step how to use the HiPay Enterprise JavaScript SDK for tokenization. The implementation can also be found in the example app (please see the previous section).
 
 ## Import the JavaScript SDK
 
@@ -72,7 +72,7 @@ For better performance, you can use the minified version:
 ```
 
 ## HTML-side integration
-Then, you need to add a payment form to your checkout. Here is a basic HTML example using bootstrap and jquery:
+Then, you need to add a payment form to your checkout. Here is a basic HTML example using Bootstrap and jQuery:
 
 ```html
 <div id="main" class="container">
@@ -83,7 +83,7 @@ Then, you need to add a payment form to your checkout. Here is a basic HTML exam
                 <!-- Main component for a primary marketing message or call to action -->
             <div class="scontainer" id ="infos-txt" class="">
                 <h1 class="main-title" id="price">HiPay Direct Post Tokenization Simulator</h1>
-                <p id="order">Submit the form in oder to tokenize the credit card details using the HiPay Fullservice SDK for JavaScript (payment details won't hit the server). You will see the HiPay Fullservice platform response below.</p>
+                <p id="order">Submit the form in order to tokenize the credit card details using the HiPay Enterprise SDK for JavaScript (payment details won't hit the server). Please see the HiPay Enterprise platform response below.</p>
                 <div id="code"></div>
                 <p id="link-area">
                     <a class="" role="link" href="#null" id="link">Click here</a> to fill the form with sample payment details.
@@ -179,7 +179,7 @@ Then, you need to add a payment form to your checkout. Here is a basic HTML exam
 ```
 
 
-Another example without jquery :
+Another example without jQuery:
 
 ```html
 <div id="main" class="container">
@@ -190,7 +190,7 @@ Another example without jquery :
                 <!-- Main component for a primary marketing message or call to action -->
             <div class="scontainer" id ="infos-txt" class="">
                 <h1 class="main-title" id="price">HiPay Direct Post Tokenization Simulator</h1>
-                <p id="order">Submit the form in oder to tokenize the credit card details using the HiPay Fullservice SDK for JavaScript (payment details won't hit the server). You will see the HiPay Fullservice platform response below.</p>
+                <p id="order">Submit the form in order to tokenize the credit card details using the HiPay Enterprise SDK for JavaScript (payment details won't hit the server). Please see the HiPay Enterprise platform response below.</p>
                 <div id="code"></div>
                 <p id="link-area">
                     <a class="" role="link" href="#null" id="link">Click here</a> to fill the form with sample payment details.
@@ -272,27 +272,27 @@ Another example without jquery :
 
 ## JavaScript processing
 You can verify the validity of the form with HiPay.Form.paymentFormDataIsValid().
-In this example the submit button is disable until the form is valid :
+In this example, the submit button is disabled until the form is valid:
 
-example with JQuery :
+Example with jQuery:
 ```js
 $("#pay-button").prop('disabled', !HiPay.Form.paymentFormDataIsValid());
 ```
 
-example without JQuery :
+Example without jQuery:
 ```js
 document.getElementById("pay-button").disabled = !HiPay.Form.paymentFormDataIsValid();
 ```
 
 
 You can add a callback function when the form data change. 
-For example when the form change you can :
+For example, when the form changes, you can:
 
 1) get CVV information with HiPay.getCVVInformation()
 2) get the validity of the form with HiPay.Form.paymentFormDataIsValid()
-3) get error list if the form is not valid
+3) get an error list if the form is not valid
 
-example with JQuery :
+Example with jQuery:
 
 ```js
 HiPay.Form.change(function() {
@@ -308,7 +308,7 @@ HiPay.Form.change(function() {
 });
 ```
 
-example without JQuery :
+Example without jQuery:
 ```js
 HiPay.Form.change(function() {
            // Information on card CVV
@@ -327,13 +327,12 @@ HiPay.Form.change(function() {
 
 ```
 
-Once the user validates the form, you must use the JavaScript SDK in order to tokenize the card. Here is an example using *jQuery*:
-First set target and credentials with  HiPay.setTarget() and  HiPay.setCredentials()
-Then Use HiPay.Form.tokenizePaymentFormData() witch return a promise.
-In case of success a card token is returned. In other case an error is returned.
-For example HiPay.ErrorReason.APIIncorrectCredentials, HiPay.ErrorReason.InvalidCardToken, ...
+Once the user validates the form, you must use the JavaScript SDK in order to tokenize the card. Here is an example using *jQuery*.
+First, set target and credentials with HiPay.setTarget() and HiPay.setCredentials().
+Then, use HiPay.Form.tokenizePaymentFormData(), which returns a promise.
+In case of success, a card token is returned. In any other case, an error is returned (e.g.: HiPay.ErrorReason.APIIncorrectCredentials, HiPay.ErrorReason.InvalidCardToken...).
 
-Example with JQuery : 
+Example with jQuery: 
 ```js
  $("#pay-button").click(function() {
 
@@ -389,7 +388,7 @@ Example with JQuery :
 ```
 
 
-Example without JQuery : 
+Example without jQuery: 
 ```js
 
 addCustomEventListener(document.getElementById("pay-button"), "click",function() {
@@ -428,7 +427,7 @@ addCustomEventListener(document.getElementById("pay-button"), "click",function()
     };
 ```
 
-Once the token is retrieved, you can process a payment on the server side. Check out the example app's source code for more information.
+Once the token is retrieved, you can process a payment on the server side. Please see the example app's source code for more information.
 
 # SDK reference
 
@@ -438,7 +437,7 @@ Please find below the methods and parameters made available by the SDK.
 
 | Field name   |      Format      |  Description |
 |----------|:-------------:|------|
-| `setTarget` |  AN | If you are testing in your stage or production account, you can choose the following targets:<br/>- `stage`<br/>- `production`
+| `setTarget` |  AN | If you are testing on your stage or production account, you can choose the following targets:<br/>- `stage`<br/>- `production`
 | `setCredentials` |  AN | Your Direct Post API credentials. **Be careful! Do not use classic API credentials but public API credentials created in the HiPay Enterprise back office.**
 | `HiPay.Form.tokenizePaymentFormData` |  - | Credit card information. Please refer to the “Create token request parameters” table below.
 
@@ -448,10 +447,10 @@ Please find below the methods and parameters made available by the SDK.
 |----------|:-------------:|:------:|:------:|------|
 | `card_number` |  N | 19 |  M | Card number, with a 12- to 19-digit length
 | `card_expiry_month` |  N | 2|  M | Card expiry month, expressed with two digits (e.g.: 01)
-| `card_expiry_year` |  N | 4|  M | Card expiry year, expressed with four digits (e.g.: 2014)
+| `card_expiry_year` |  N | 4|  M | Card expiry year, expressed with four digits (e.g.: 2019)
 | `card_holder` |  AN | 25|  - | Cardholder’s name as it appears on the card (up to 25 characters)
 | `cvc` |  N | 4|  - | 3- or 4-digit security code (called CVC2, CVV2 or CID depending on the card's brand) as it appears on the credit card
-| `multi_use` |  N | 1|  - | Indicates if the token should be generated either for single use or multi-use.<br/>Possible values:<br/>1 = Generate a multi-use token<br/>0 = Generate a single-use token.<br/>While a single-use token is typically generated for a short time and for processing a single transaction, multi-use tokens are generally generated for recurring payments.
+| `multi_use` |  N | 1|  - | Indicates if the token should be generated either for a single use or multiple uses.<br/>Possible values:<br/>1 = Generate a multi-use token.<br/>0 = Generate a single-use token.<br/>While a single-use token is typically generated for a short time and for processing a single transaction, multi-use tokens are generally generated for recurring payments.
  
 ## Create token response parameters
 The following table lists and describes response fields.
@@ -460,12 +459,12 @@ The following table lists and describes response fields.
 |----------|------------|
 |`token`| Token that was created |
 |`request_id`| Request ID linked to the token |
-|`brand`| Card's brand (e.g.: Visa, MasterCard, American Express, JCB, Discover, Diners Club, Solo, Laser, Maestro) |
+|`brand`| Card's brand (e.g.: Visa, Mastercard, American Express, JCB, Discover, Diners Club, Solo, Laser, Maestro) |
 |`pan`| Card number (up to 19 characters). Please note: due to PCI DSS security standards, our system has to mask credit card numbers in any output (e.g.: 549619******4769).|
 |`card_holder`| Cardholder’s name |
 |`card_expiry_month`| Card expiry month (2 digits) |
 |`card_expiry_year`| Card expiry year (4 digits) |
-|`issuer`| Card-issuing bank’s name<br/>Do not rely on this value to remain static over time. Bank names may change over time due to acquisitions and mergers.|
+|`issuer`| Card-issuing bank's name<br/>Do not rely on this value to remain static over time. Bank names may change over time due to acquisitions and mergers.|
 |`country`| Bank country code where the card was issued. This two-letter country code complies with ISO 3166-1 (alpha 2).|
 |`card_type`| Card type (if applicable, e.g.: “DEBIT, CREDIT”) |
 |`card_category`| Card category (if applicable, e.g.: “PLATINUM”) |
