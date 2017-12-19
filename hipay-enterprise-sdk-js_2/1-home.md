@@ -464,7 +464,7 @@ The following table lists and describes response fields.
 |`card_holder`| Cardholder’s name |
 |`card_expiry_month`| Card expiry month (2 digits) |
 |`card_expiry_year`| Card expiry year (4 digits) |
-|`issuer`| Card-issuing bank's name<br/>Do not rely on this value to remain static over time. Bank names may change over time due to acquisitions and mergers.|
+|`issuer`| Card-issuing bank’s name<br/>Do not rely on this value to remain static over time. Bank names may change over time due to acquisitions and mergers.|
 |`country`| Bank country code where the card was issued. This two-letter country code complies with ISO 3166-1 (alpha 2).|
 |`card_type`| Card type (if applicable, e.g.: “DEBIT, CREDIT”) |
 |`card_category`| Card category (if applicable, e.g.: “PLATINUM”) |
