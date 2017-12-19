@@ -1,6 +1,6 @@
 # HiPay Enterprise JavaScript SDK for tokenization (Direct Post)
 
-The HiPay Enterprise JavaScript SDK for tokenization allows you to tokenize credit or debit cards using the HiPay Enterprise payment platform, directly from the web browser. It enables you to offer a unified payment workflow to your customers while remaining PCI compliant.
+The HiPay Enterprise JavaScript SDK for tokenization allows you to tokenize credit or debit cards using the HiPay Enterprise payment platform, directly from your web browser. It enables you to offer a unified payment workflow to your customers while remaining PCI compliant.
 
 # Security principle
 
@@ -48,17 +48,17 @@ In order to test the example app, open a terminal and execute setup.sh with init
 
 	$ ./setup.sh init
 
-Copy the following file: `example/config/credentials.php.dist` to `example/config/credentials.php` and open it to put your own HiPay Enterprise private credentials. Follow the instructions inserted in PHP comments.
-Then, copy the following file: `example/public/credentials_public.json.dist` to `example/public/credentials_public.json` and open it to put your own HiPay Enterprise public credentials.
+Copy the file `example/config/credentials.php.dist` to `example/config/credentials.php` and open it to put your own HiPay Enterprise private credentials. Follow the instructions inserted in PHP comments.
+Then, copy the file `example/public/credentials_public.json.dist` to `example/public/credentials_public.json` and open it to put your own HiPay Enterprise public credentials.
 
-Finally, open your web browser and go to: http://localhost:8080. 
+Finally, open your web browser and go to http://localhost:8080. 
 You should see the form shown in the screenshot above.
 
 # Integration guide
 
 The following integration guide describes step by step how to use the HiPay Enterprise JavaScript SDK for tokenization. The implementation can also be found in the example app (please see the previous section).
 
-## Import the JavaScript SDK
+## Importing the JavaScript SDK
 
 To use the SDK, you need to add the following script tag to your HTML pages:
 
@@ -72,7 +72,7 @@ For better performance, you can use the minified version:
 ```
 
 ## HTML-side integration
-Then, you need to add a payment form to your checkout. Here is a basic HTML example using Bootstrap and jQuery:
+Then, you need to add a payment form to your checkout page. Here is a basic HTML example using Bootstrap and jQuery:
 
 ```html
 <div id="main" class="container">
@@ -104,7 +104,7 @@ Then, you need to add a payment form to your checkout. Here is a basic HTML exam
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="form-group">
-                            <label class="sr-only" for="input-name">Prénom Nom</label>
+                            <label class="sr-only" for="input-name">First name Name</label>
                             <div class="input-group">
                                 <div class="input-group-addon-icon input-group-addon"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></div>
 
@@ -210,7 +210,7 @@ Another example without jQuery:
 
                 <div class="row">
 
-                            <label class="sr-only" for="input-name-custom">Prénom Nom</label>
+                            <label class="sr-only" for="input-name-custom">First name Name</label>
                             <div class="input-group">
                                 <div class="input-group-addon-icon input-group-addon"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></div>
 
@@ -272,7 +272,7 @@ Another example without jQuery:
 
 ## JavaScript processing
 You can verify the validity of the form with HiPay.Form.paymentFormDataIsValid().
-In this example, the submit button is disabled until the form is valid:
+In this example, the submit button is disabled until the form is valid.
 
 Example with jQuery:
 ```js
@@ -286,7 +286,7 @@ document.getElementById("pay-button").disabled = !HiPay.Form.paymentFormDataIsVa
 
 
 You can add a callback function when the form data change. 
-For example, when the form changes, you can:
+For example, you can:
 
 1) get CVV information with HiPay.getCVVInformation()
 2) get the validity of the form with HiPay.Form.paymentFormDataIsValid()
@@ -299,9 +299,9 @@ HiPay.Form.change(function() {
     // get CVV information
     console.log(HiPay.getCVVInformation());
     console.log('change form');
-    // enable / disable submit button with form validity
+    // enable / disable the submit button with form validity
     $("#pay-button").prop('disabled', !HiPay.Form.paymentFormDataIsValid());
-    // get error list if form is not valid
+    // get an error list if the form is not valid
     var errorCollection = HiPay.Form.paymentFormDataGetErrors();
     console.log("errorCollection from client");
     console.log(errorCollection);
@@ -312,9 +312,9 @@ Example without jQuery:
 ```js
 HiPay.Form.change(function() {
            // Information on card CVV
-           // message CVV
+           // CVV message
            document.getElementById('container-cvv-help-message').innerHTML = HiPay.Form.CVVHelpText();
-           // img CVV
+           // CVV image
            var myImgCVV = document.getElementById("cvv-img");
            cvvInfo = HiPay.getCVVInformation();
            console.log("cvvInfo");
@@ -336,7 +336,7 @@ Example with jQuery:
 ```js
  $("#pay-button").click(function() {
 
-    // disable submit button and display loader
+    // disable the submit button and display loader
     $("#form :input").prop("disabled", true);
     $("#form :button").prop("disabled", true);
     $("#error").text("");
@@ -360,12 +360,12 @@ Example with jQuery:
         $("#charge-button").show();
     })
         .catch(function(error){
-            if (error.code === HiPay.ErrorReason.APIIncorrectCredentials) { // égal à 1012003
-                console.log("Invalid crédentials");
+            if (error.code === HiPay.ErrorReason.APIIncorrectCredentials) { // equal to 1000001
+                console.log("Invalid credentials");
             }
 
-            if (error.code === HiPay.ErrorReason.InvalidCardToken) { // égal à 1012003
-                console.log("Token passé invalide…");
+            if (error.code === HiPay.ErrorReason.InvalidCardToken) { // equal to 1012003
+                console.log("Invalid card token");
             }
 
 
@@ -410,12 +410,12 @@ addCustomEventListener(document.getElementById("pay-button"), "click",function()
                     document.getElementById("charge-button").style.display = 'block';
                 })
                 .catch(function(error){
-                    if (error.code === HiPay.ErrorReason.APIIncorrectCredentials) { // égal à 1012003
-                        console.log("Invalid crédentials");
+                    if (error.code === HiPay.ErrorReason.APIIncorrectCredentials) { // equal to 1000001
+                        console.log("Invalid credentials");
                     }
 
-                    if (error.code === HiPay.ErrorReason.InvalidCardToken) { // égal à 1012003
-                        console.log("Token passé invalide…");
+                    if (error.code === HiPay.ErrorReason.InvalidCardToken) { // equal to 1012003
+                        console.log("Invalid card token");
                     }
 
                     document.getElementById("pay-button").innerHTML = "Tokenize";
@@ -439,9 +439,9 @@ Please find below the methods and parameters made available by the SDK.
 |----------|:-------------:|------|
 | `setTarget` |  AN | If you are testing on your stage or production account, you can choose the following targets:<br/>- `stage`<br/>- `production`
 | `setCredentials` |  AN | Your Direct Post API credentials. **Be careful! Do not use classic API credentials but public API credentials created in the HiPay Enterprise back office.**
-| `HiPay.Form.tokenizePaymentFormData` |  - | Credit card information. Please refer to the “Create token request parameters” table below.
+| `HiPay.Form.tokenizePaymentFormData` |  - | Credit card information. Please refer to the “Token creation request parameters” table below.
 
-## Create token request parameters
+## Token creation request parameters
 
 | Field name   |  Format |  Length |   Req. |  Description |
 |----------|:-------------:|:------:|:------:|------|
@@ -452,14 +452,14 @@ Please find below the methods and parameters made available by the SDK.
 | `cvc` |  N | 4|  - | 3- or 4-digit security code (called CVC2, CVV2 or CID depending on the card's brand) as it appears on the credit card
 | `multi_use` |  N | 1|  - | Indicates if the token should be generated either for a single use or multiple uses.<br/>Possible values:<br/>1 = Generate a multi-use token.<br/>0 = Generate a single-use token.<br/>While a single-use token is typically generated for a short time and for processing a single transaction, multi-use tokens are generally generated for recurring payments.
  
-## Create token response parameters
+## Token creation response parameters
 The following table lists and describes response fields.
 
 | Field name   |      Description     |
 |----------|------------|
 |`token`| Token that was created |
 |`request_id`| Request ID linked to the token |
-|`brand`| Card's brand (e.g.: Visa, Mastercard, American Express, JCB, Discover, Diners Club, Solo, Laser, Maestro) |
+|`brand`| Card's brand (e.g.: Visa, Mastercard, American Express, Maestro) |
 |`pan`| Card number (up to 19 characters). Please note: due to PCI DSS security standards, our system has to mask credit card numbers in any output (e.g.: 549619******4769).|
 |`card_holder`| Cardholder’s name |
 |`card_expiry_month`| Card expiry month (2 digits) |
