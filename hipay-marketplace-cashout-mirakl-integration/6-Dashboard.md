@@ -48,7 +48,7 @@ Operation logs are displayed with the following information:
 | Amount | Amount of the operation |
 | Origin amount | Amount of the operation before adjustment of negative operations |
 | Transfer status  | Status of the transfer for this operation. Possible values are `OK`, `KO (insufficient funds)` or `KO`. |
-| Withdraw status  | Status of the withdrawal for this operation. Possible values are `OK (requested)`, `OK`, `KO (failed)`, `KO (insufficient funds)` or `KO (cancel)`.  |
+| Withdraw status  | Status of the withdrawal for this operation. Possible values are `OK (requested)`, `OK`, `KO (failed)`, `KO (insufficient funds)` or `KO (canceled)`.  |
 | Balance  | Balance of the wallet account |
 | Date  | Date of the last update for this operation |
 
