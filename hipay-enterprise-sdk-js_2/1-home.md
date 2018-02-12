@@ -76,18 +76,15 @@ Then, you need to add a payment form to your checkout. Here is a basic HTML exam
 
 ```html
 <div id="main" class="container">
-
-        <div class="row">
-            <div class="col-sm-12 col-lg-7">
-
-                <!-- Main component for a primary marketing message or call to action -->
+    <div class="row">
+        <div class="col-sm-12 col-lg-7">
+	    <!-- Main component for a primary marketing message or call to action -->
             <div class="scontainer" id ="infos-txt" class="">
                 <h1 class="main-title" id="price">HiPay Direct Post Tokenization Simulator</h1>
                 <p id="order">Submit the form in oder to tokenize the credit card details using the HiPay Fullservice SDK for JavaScript (payment details won't hit the server). You will see the HiPay Fullservice platform response below.</p>
                 <div id="code"></div>
                 <p id="link-area">
-                    <a class="" role="link" href="#null" id="link">Click here</a> to fill the form with sample payment details.
-                </p>
+                    <a class="" role="link" href="#null" id="link">Click here</a> to fill the form with sample payment details.</p>
                 <p id="charge" >
                     <a class="btn btn-lg btn-primary" role="button" href="#null" id="charge-button" style="display: none;">Create a test charge on this token (server-side PHP SDK)</a>
                 </p>
@@ -96,18 +93,15 @@ Then, you need to add a payment form to your checkout. Here is a basic HTML exam
 
         <div class="col-sm-12 col-lg-5">
             <div class="scontainer" id="form">
-
                 <p class="form-description details">
                     Enter your payment details:
                 </p>
-
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="form-group">
                             <label class="sr-only" for="input-name">Prénom Nom</label>
                             <div class="input-group">
                                 <div class="input-group-addon-icon input-group-addon"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></div>
-
                                 <input type="text" class="form-control" id="input-name" placeholder="" value="">
                             </div>
                         </div>
@@ -126,8 +120,6 @@ Then, you need to add a payment form to your checkout. Here is a basic HTML exam
                     </div>
                 </div>
 
-
-
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="form-group">
@@ -140,14 +132,12 @@ Then, you need to add a payment form to your checkout. Here is a basic HTML exam
 
                                </div>
                             <div id="creditCardExpiryDateMessageContainer" class="inputMessageContainer"></div>
-
                         </div>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-lg-12">
-
                         <div class="form-group">
                             <label class="sr-only" for="input-cvv">123</label>
                             <div id="container-cvv" class="input-group">
@@ -160,7 +150,6 @@ Then, you need to add a payment form to your checkout. Here is a basic HTML exam
                     </div>
                 </div>
 
-
                 <div class="row">
                     <div class="col-lg-12">
                         <div id="submit-zone">
@@ -169,12 +158,9 @@ Then, you need to add a payment form to your checkout. Here is a basic HTML exam
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
-
     </div>
-
 </div>
 ```
 
@@ -183,90 +169,62 @@ Another example without jquery :
 
 ```html
 <div id="main" class="container">
+    <!-- Main component for a primary marketing message or call to action -->
+    <div class="scontainer" id ="infos-txt" class="">
+        <h1 class="main-title" id="price">HiPay Direct Post Tokenization Simulator</h1>
+        <p id="order">Submit the form in oder to tokenize the credit card details using the HiPay Fullservice SDK for JavaScript (payment details won't hit the server). You will see the HiPay Fullservice platform response below.</p>
+        <div id="code"></div>
+        <p id="link-area">
+            <a class="" role="link" href="#null" id="link">Click here</a> to fill the form with sample payment details.
+        </p>
+        <p id="charge" >
+            <a class="btn btn-lg btn-primary" role="button" href="#null" id="charge-button" style="display: none;">Create a test charge on this token (server-side PHP SDK)</a>
+        </p>
+    </div>
+    <div class="scontainer" id="form">
+        <p class="form-description details">Enter your payment details:</p>
+         <div class="row">
+             <label class="sr-only" for="input-name-custom">Prénom Nom</label>
+             <div class="input-group">
+                 <div class="input-group-addon-icon input-group-addon"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></div>
 
-
-
-
-                <!-- Main component for a primary marketing message or call to action -->
-            <div class="scontainer" id ="infos-txt" class="">
-                <h1 class="main-title" id="price">HiPay Direct Post Tokenization Simulator</h1>
-                <p id="order">Submit the form in oder to tokenize the credit card details using the HiPay Fullservice SDK for JavaScript (payment details won't hit the server). You will see the HiPay Fullservice platform response below.</p>
-                <div id="code"></div>
-                <p id="link-area">
-                    <a class="" role="link" href="#null" id="link">Click here</a> to fill the form with sample payment details.
-                </p>
-                <p id="charge" >
-                    <a class="btn btn-lg btn-primary" role="button" href="#null" id="charge-button" style="display: none;">Create a test charge on this token (server-side PHP SDK)</a>
-                </p>
+                 <input type="text" class="form-control" id="input-name-custom" autocomplete="cc-name" x-autocompletetype="cc-name" placeholder="" value="" data-hipay-id="card-holder" data-hipay-tabable="true">
+             </div>
+          </div>
+          <div class="row">
+              <label class="sr-only" for="input-card-custom">Card number</label>
+              <div class="input-group">
+                  <div class="input-group-addon-icon input-group-addon"><span class="glyphicon glyphicon-credit-card" aria-hidden="true"></span></div>
+                  <input type="tel" class="form-control" id="input-card-custom" autocomplete="cc-number" x-autocompletetype="cc-number" placeholder="" pattern="\d*" name="cardNumber" value="" data-hipay-id="card-number" data-hipay-tabable="true">
+               </div>
+               <div id="creditCardNumberMessageContainer" class="inputMessageContainer"></div>
             </div>
-
-
-
-            <div class="scontainer" id="form">
-
-                <p class="form-description details">
-                    Enter your payment details:
-                </p>
-
-                <div class="row">
-
-                            <label class="sr-only" for="input-name-custom">Prénom Nom</label>
-                            <div class="input-group">
-                                <div class="input-group-addon-icon input-group-addon"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></div>
-
-                                <input type="text" class="form-control" id="input-name-custom" autocomplete="cc-name" x-autocompletetype="cc-name" placeholder="" value="" data-hipay-id="card-holder" data-hipay-tabable="true">
-                            </div>
-
+            <div class="row">
+                <label class="sr-only" for="input-expiry-date">MM / YY</label>
+                <div class="input-group">
+                    <div class="input-group-addon-icon input-group-addon"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span></div>
+                    <input type="text" class="form-control" id="input-expiry-date" value="" data-hipay-id="card-expiry-date" data-hipay-tabable="true">
                 </div>
-                <div class="row">
-
-                            <label class="sr-only" for="input-card-custom">Card number</label>
-                            <div class="input-group">
-                                <div class="input-group-addon-icon input-group-addon"><span class="glyphicon glyphicon-credit-card" aria-hidden="true"></span></div>
-                                <input type="tel" class="form-control" id="input-card-custom" autocomplete="cc-number" x-autocompletetype="cc-number" placeholder="" pattern="\d*" name="cardNumber" value="" data-hipay-id="card-number" data-hipay-tabable="true">
-                            </div>
-                            <div id="creditCardNumberMessageContainer" class="inputMessageContainer"></div>
-
-                </div>
-
-
-
-                <div class="row">
-
-                            <label class="sr-only" for="input-expiry-date">MM / YY</label>
-                            <div class="input-group">
-                                <div class="input-group-addon-icon input-group-addon"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span></div>
-                                <input type="text" class="form-control" id="input-expiry-date" value="" data-hipay-id="card-expiry-date" data-hipay-tabable="true">
-                               </div>
-                            <div id="creditCardExpiryDateMessageContainer" class="inputMessageContainer">
-
-                            </div>
-
-                </div>
-
-                <div class="row">
-
-                            <label class="sr-only" for="input-cvv">123</label>
-                            <div id="container-cvv" class="input-group">
-                                <div class="input-group-addon-icon input-group-addon"><span class="glyphicon glyphicon-lock" aria-hidden="true"></span></div>
-                                <input class="form-control" id="input-cvv" placeholder="123" maxlength="3" value="" data-hipay-id="card-cvv" data-hipay-tabable="true">
-                                <span id="cvv-button" class="input-group-addon"><button id="cvv-modal" type="button" data-toggle="modal" data-target="#cvv-modal">?</button></span>
-                            </div>
-                            <div id="creditCardCVVMessageContainer" class="inputMessageContainer">
-                                <p id="container-cvv-help-message"></p><img id="cvv-img">
-                            </div>
-
-                </div>
-
-
-                <div class="row">
-                        <div id="submit-zone">
-                            <div id="error-container"></div>
-                            <button class="btn btn-large" type="button" data-toggle="modal" data-target="#other-method-modal" id="pay-button" data-hipay-id="pay-button">Tokenize</button>
-                        </div>
-                </div>
-
+                <div id="creditCardExpiryDateMessageContainer" class="inputMessageContainer"></div>
             </div>
+            <div class="row">
+                <label class="sr-only" for="input-cvv">123</label>
+                <div id="container-cvv" class="input-group">
+                    <div class="input-group-addon-icon input-group-addon"><span class="glyphicon glyphicon-lock" aria-hidden="true"></span></div>
+                    <input class="form-control" id="input-cvv" placeholder="123" maxlength="3" value="" data-hipay-id="card-cvv" data-hipay-tabable="true">
+                    <span id="cvv-button" class="input-group-addon"><button id="cvv-modal" type="button" data-toggle="modal" data-target="#cvv-modal">?</button></span>
+                 </div>
+                 <div id="creditCardCVVMessageContainer" class="inputMessageContainer">
+                     <p id="container-cvv-help-message"></p><img id="cvv-img">
+                 </div>
+            </div>
+            <div class="row">
+                <div id="submit-zone">
+                <div id="error-container"></div>
+                <button class="btn btn-large" type="button" data-toggle="modal" data-target="#other-method-modal" id="pay-button" data-hipay-id="pay-button">Tokenize</button>
+            </div>
+        </div>
+    </div>
 </div>
 ```
 
